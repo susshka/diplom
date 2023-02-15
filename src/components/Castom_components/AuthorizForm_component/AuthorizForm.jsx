@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Button from '../../UI/button/Button';
 import Input from '../../UI/input/Input';
 import classes from "./AuthorizForm.module.css"
-const AuthorizForm = ({saveUD, setVizible, visible}) => {
+const AuthorizForm = ({saveUD, setVizible, visible,setLogging}) => {
     
     const [notice, setNotice] = useState("Введите логин и пароль")
   
@@ -17,8 +17,10 @@ const AuthorizForm = ({saveUD, setVizible, visible}) => {
         const enteredData = { //если нужно добавить отдельное значение, можно создать новую переменную и присвоить ее
             ...authorizData
         }
-        if(saveUD(enteredData)){
+        const check=saveUD(enteredData);
+        if(check){
             setVizible(false)
+            setLogging("Выйти")
             setNotice("Введите логин и пароль")
             setAuthorizData({login:"", password:""})
         }

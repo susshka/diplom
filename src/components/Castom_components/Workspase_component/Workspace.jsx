@@ -1,14 +1,12 @@
 import React, {useState, useMemo } from 'react';
-import Modal from '../../UI/modal/Modal';
-import AuthorizForm from '../AuthorizForm_component/AuthorizForm';
 import NavigationForm from '../NavigationForm_component/NavigationForm';
 import POInfo from '../POInfo_component/POInfo';
 /*import POAdderForm from '../POAdderForm_component/POAdderForm';*/
 
 import classes from './Workspase.module.css';
 
-const Workspace = (props) => {
-    var Dates = new Array(4);
+const Workspace = ({posts, setPosts, usersData, saveUserData}) => {
+    /*var Dates = new Array(4);
     var date = new Date(2018, 1, 15, 11, 33, 30, 0);
     for(var p = 0; p < 4; p++) {
         date.setDate(date.getDate() + 1);
@@ -19,19 +17,19 @@ const Workspace = (props) => {
     const usersData = [{login:"Aboba", password:"1234"},
                         {login:"Lola", password:"12345"},
                         {login:"Pop", password:"1111fg"}]
-
+    */
     /*здесь в posts по-сути должны лежать значения из запроса к базе, который происходит перед созданием самого массива posts и отображает всё ПО*/
-     const [posts, setPosts]=useState([{id: Date.now()+1, title:'ARM NSI', date: Dates[0].toLocaleString(), status:"Ok", errorID:"23R345",errorDIS:"щукапмущшкомщушкомшщуком"},
+    /* const [posts, setPosts]=useState([{id: Date.now()+1, title:'ARM NSI', date: Dates[0].toLocaleString(), status:"Ok", errorID:"23R345",errorDIS:"щукапмущшкомщушкомшщуком"},
                                     {id: Date.now()+2, title:'SiteLine', date: Dates[1].toLocaleString(), status:"Ok",errorID:"23R33345",errorDIS:"цйумуцйщшмщшцйрмцрйм"},
                                     {id: Date.now()+3, title:'Kontur', date: Dates[2].toLocaleString(), status:"Ok",errorID:"23R3rqd45",errorDIS:"цуйщшрмцйррррзршмцймсцвсй"},
                                     {id: Date.now()+4, title:'Polearm', date: Dates[3].toLocaleString(), status:"Ok",errorID:"23Rr32345",errorDIS:"цйумщшгмцййршщвтсцймщшгм"},
-                                    ]); 
+                                    ]); */
 
 /*const [POName, setPOName]=useState(); //для управляемого компонента
 const [PODiscr, setPODiscr]=useState(); //можно создавать состояния для каждой переменной*/
 /*const inpRef = useRef(); //для не управляемого компонента*/
 
-const userData= {login:"", password:""};
+/*const userData= {login:"", password:""};
 const saveUserData = (data) => {
     if (usersData.find(ud => ud.login===data.login && ud.password===data.password)){  
         userData.login=data.login;
@@ -43,7 +41,7 @@ const saveUserData = (data) => {
         userData.password="";
         return false;
     }
-}
+}*/
 
 /*const createPOs = (newPO) => {
 setPosts([...posts, newPO])
@@ -60,7 +58,7 @@ const delitePOs = (POs) => {
 setPosts(posts.filter(p=>p.id!==POs.id))
 }
 
-const [modal, setModal] = useState(false);
+/*const [modal, setModal] = useState(false);*/
 /*переменная modal для отслеживания, включено модальное окно или нет, по умолчанию - нет */
 
 /*Функция выбора сортировки, берет значение value из Select'a и используя обработчик состояния переменной selectedSort из Workspase'a, меняет его*/
@@ -93,12 +91,7 @@ const sortedAndSearchedPOs = useMemo(() => {
 
     return (
         <div className={classes.Workspace}>
-            
-            <Modal visible={modal} setVisible={setModal}>
-                {/*<POAdderForm create={createPOs}/>*/ }
-                <AuthorizForm saveUD={saveUserData}  setVizible={setModal} visible={modal}/>
-            </Modal>
-            <NavigationForm setAddedPO={POinfo} filter={filter} setFilter={setFilter} delite={delitePOs} setModal={setModal}posts={sortedAndSearchedPOs} title="Cписок программного обеспечения"/>
+            <NavigationForm setAddedPO={POinfo} filter={filter} setFilter={setFilter} delite={delitePOs} posts={sortedAndSearchedPOs} title="Cписок программного обеспечения"/>
             <POInfo addedPO={addedPOs}/>
         </div>
     );

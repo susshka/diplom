@@ -1,9 +1,8 @@
 import React from 'react';
-import Button from '../../UI/button/Button';
 import Input from '../../UI/input/Input';
 import Select from '../../UI/select/Select';
 import classes from "./FilterPOs.module.css"
-const FilterPOs = ({filter, setFilter, setModal}) => {
+const FilterPOs = ({filter, setFilter}) => {
     return (
         <div className={classes.FilterPOs}>
                 <Select 
@@ -19,7 +18,7 @@ const FilterPOs = ({filter, setFilter, setModal}) => {
                 />
                 <Input style={{margin:"5px"}} placeholder="Поиск..." value={filter.query} onChange={e => setFilter({...filter, query: e.target.value})}/>
                 {/*При изменении инпута перезаписывается поле query переменной filter через обработчик событий, значение берется из значения, введенного в инпут */}
-                <Button onClick={() => setModal(true)}>Авторизация</Button> {/*с помощью функции изменения состояния, вызываем по клику модальное окно */}
+                {/*с помощью функции изменения состояния, вызываем по клику модальное окно */}
         </div>
     );
 };
