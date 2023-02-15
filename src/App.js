@@ -4,7 +4,8 @@ import WorkspaceInfo from "./components/Castom_components/Workspase_component/Wo
 import "./styles/App.css";
 import Layout from "./components/UI/layout/Layout";
 import WorkspaceLogs from "./components/Castom_components/Workspase_component/WorkspaceLogs";
-
+import ModalAuth from "./components/Castom_components/ModalAuth_component/ModalAuth";
+import RequireAuth from './components/hoc/RequireAuth'
 
 function App() {
   var Dates = new Array(4);
@@ -28,7 +29,8 @@ function App() {
 const [userData, setUserData] = useState({login:"", password:""});
 const saveUserData = (data) => {
     if (usersData.find(ud => ud.login===data.login && ud.password===data.password)){  
-        setUserData({login:data.login, password:data.password});
+        setUserData(data);
+        /*setUserData({login:data.login, password:data.password});*/
         /*userData.login=data.login;
         userData.password=data.password;*/
         console.log(userData)
@@ -44,14 +46,31 @@ const saveUserData = (data) => {
 }
 
 const [logging, setLogging] = useState("Войти");
-const [modal, setModal] = useState(false);
+const [modal, setModal] = useState(true);
+
+const [userTitle, setUserTitle]=useState("Авторизуйтесь")
+    const EaE = () => {
+        if(userData.login==="" && userData.password===""&&logging==="Войти"){
+            setModal(true)
+        }
+        else if (userData.login!=="" && userData.password!==""&&logging==="Выйти"){
+            setLogging("Войти")
+            setUserData({login:"",password:""});
+            setUserTitle("Авторизуйтесь")
+        }
+}
   return (
     <div className="App">
       
       <Routes>
-        <Route path="/" element={<Layout modal={modal} setModal={setModal} saveUserData={saveUserData} logging={logging} setLogging={setLogging} userData={userData} setUserData={setUserData}/>}>
-          <Route path="soft_info" element={<WorkspaceInfo posts={posts} setPosts={setPosts} usersData={usersData} saveUserData={saveUserData}/>}/>
+        <Route path="/" element={<Layout logging={logging} userTitle={userTitle} EaE={EaE}/>}>
+          <Route path="soft_info" element={
+            <RequireAuth>
+              <WorkspaceInfo posts={posts} setPosts={setPosts} usersData={usersData} saveUserData={saveUserData}/>
+            </RequireAuth>
+          }/>
           <Route path="logs_list" element={<WorkspaceLogs posts={posts} setPosts={setPosts} usersData={usersData} saveUserData={saveUserData}/>}/>
+          <Route path="auth" element={<ModalAuth modal={modal} setModal={setModal} saveUserData={saveUserData} setLogging={setLogging} setUserTitle={setUserTitle}/>}/>
         </Route>  
       </Routes>
      {/*<Workspace/>*/}

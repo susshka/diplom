@@ -1,0 +1,11 @@
+.nl{
+    text-decoration: none;
+    color: #0f7afc;
+}
+.nl:hover{ text-decoration: none;
+color: #0f7afc;}
+
+.nl:visited{
+    text-decoration: none;
+color: #0f7afc;
+}
