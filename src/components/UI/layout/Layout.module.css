@@ -21,4 +21,9 @@
     border-bottom: 1px solid;
     border-bottom-color: #4160ea73;
 }
-
+.user{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-size: 14px;
+}

@@ -3,7 +3,7 @@ import POHeader from './POHeader_component/POHeader';
 import POItem from './POItem_component/POItem';
 import classes from './POList.module.css';
 
-const POList = ({posts, delite,setAddedPO}) => {
+const POList = ({posts,setAddedPO}) => {
     const [titlesHeader, setTitlesHeader] = useState([{title:"ID ПО"},
                                                     {title:"Название ПО"},
                                                     {title:"Последнее обновление"},
@@ -17,7 +17,7 @@ const POList = ({posts, delite,setAddedPO}) => {
         <div className={classes.POList}>
             <POHeader titles={titlesHeader}/>
             {posts.map((postIter, index) =>
-                <POItem delite={delite} number={index+1} post={postIter} key={postIter.id} setAddedPO={setAddedPO}/>
+                <POItem number={index+1} post={postIter} key={postIter.id} setAddedPO={setAddedPO}/>
             )}   
         </div>
     );

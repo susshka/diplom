@@ -1,8 +1,9 @@
 import React, {useState} from "react";
 import {Routes, Route} from 'react-router-dom';
-import Workspace from "./components/Castom_components/Workspase_component/Workspace";
+import WorkspaceInfo from "./components/Castom_components/Workspase_component/WorkspaceInfo";
 import "./styles/App.css";
 import Layout from "./components/UI/layout/Layout";
+import WorkspaceLogs from "./components/Castom_components/Workspase_component/WorkspaceLogs";
 
 
 function App() {
@@ -49,12 +50,11 @@ const [modal, setModal] = useState(false);
       
       <Routes>
         <Route path="/" element={<Layout modal={modal} setModal={setModal} saveUserData={saveUserData} logging={logging} setLogging={setLogging} userData={userData} setUserData={setUserData}/>}>
-          <Route path="soft_info" element={<Workspace posts={posts} setPosts={setPosts} usersData={usersData} saveUserData={saveUserData}/>}/>
-          <Route path="logs_list" element={<Workspace/>}/>
+          <Route path="soft_info" element={<WorkspaceInfo posts={posts} setPosts={setPosts} usersData={usersData} saveUserData={saveUserData}/>}/>
+          <Route path="logs_list" element={<WorkspaceLogs posts={posts} setPosts={setPosts} usersData={usersData} saveUserData={saveUserData}/>}/>
         </Route>  
       </Routes>
      {/*<Workspace/>*/}
-
     </div>
     );
 }

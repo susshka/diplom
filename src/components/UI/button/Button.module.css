@@ -2,16 +2,16 @@
    height: min-content;
     width: max-content;
     padding:5px 15px;
-    color: rgb(65,88,208);
+    color: #0f7afc;
     font-size: 14px;
     background: transparent;
-    border: 1px solid rgb(65,88,208);
+    border: 1px solid #0f7afc;
     cursor: pointer;
     margin: 5px;
    
     
 }
-.Btn:hover{
-    color: #0f7afc;
-    border: 1px solid #0f7afc;
+.Btn:active{
+    color: rgb(65,88,208);
+    border: 1px solid rgb(65,88,208);
 }

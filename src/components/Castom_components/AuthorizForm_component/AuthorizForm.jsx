@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Button from '../../UI/button/Button';
 import Input from '../../UI/input/Input';
 import classes from "./AuthorizForm.module.css"
-const AuthorizForm = ({saveUD, setVizible, visible,setLogging}) => {
+const AuthorizForm = ({saveUD, setVizible, visible,setLogging, setUserTitle}) => {
     
     const [notice, setNotice] = useState("Введите логин и пароль")
   
@@ -10,6 +10,7 @@ const AuthorizForm = ({saveUD, setVizible, visible,setLogging}) => {
     
     if(notice==="Ошибка авторизации, попробуйте снова!"&&visible===false){
             setNotice("Введите логин и пароль")
+            setUserTitle("Авторизуйтесь")
     }
 
     const saveUDate = (e) => {
@@ -21,6 +22,7 @@ const AuthorizForm = ({saveUD, setVizible, visible,setLogging}) => {
         if(check){
             setVizible(false)
             setLogging("Выйти")
+            setUserTitle(enteredData.login)
             setNotice("Введите логин и пароль")
             setAuthorizData({login:"", password:""})
         }

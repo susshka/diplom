@@ -1,19 +1,19 @@
 import React, {useState, useMemo } from 'react';
+import LogsForm from '../LogsForm_component/LogsForm';
 import NavigationForm from '../NavigationForm_component/NavigationForm';
-import POInfo from '../POInfo_component/POInfo';
 /*import POAdderForm from '../POAdderForm_component/POAdderForm';*/
 
-import classes from './Workspase.module.css';
+import classes from './WorkspaseLogs.module.css';
 
-const Workspace = ({posts, setPosts, usersData, saveUserData}) => {
-    /*var Dates = new Array(4);
+const WorkspaceLogs = ({posts, setPosts, usersData, saveUserData}) => {
+    var Dates = new Array(4);
     var date = new Date(2018, 1, 15, 11, 33, 30, 0);
     for(var p = 0; p < 4; p++) {
         date.setDate(date.getDate() + 1);
         Dates[p] = new Date(date);   
         //document.write("<br>"+d);// тут работает
     }
-
+/*
     const usersData = [{login:"Aboba", password:"1234"},
                         {login:"Lola", password:"12345"},
                         {login:"Pop", password:"1111fg"}]
@@ -49,14 +49,28 @@ setPosts([...posts, newPO])
 
 const [addedPOs, setAddedPOs]= useState({id:null, title:"", date:null, status:"", errorID:"",errorDIS:""})
 
+/*Нужно создать функцию, которую передадим кнопке инфо, которая будет делать "запрос" и менять состояние некой переменной*/
+const [logs, setLogs] = useState([])
+const logOfPO = (PO) =>{
+    /*тут типа запрос */
+    const lg = [{id:Date.now()+1, errID:"55435fwd", errDIS:"sdvsdvdsv", date:Dates[0].toLocaleString(), dir:"/ets/bin"},
+                {id:Date.now()+4, errID:"ewfwef342", errDIS:"ewfwef", date:Dates[1].toLocaleString(), dir:"/c/farg/y"},
+                {id:Date.now()+3, errID:"fwefwef34", errDIS:"wefwef", date:Dates[2].toLocaleString(), dir:"/bon/tri/v"},
+                {id:Date.now()+2, errID:"wefwefwe3", errDIS:"wefwefewf", date:Dates[3].toLocaleString(), dir:"/ffew/fwe/wef"}];
+    for(var i=0;i<lg.length;i++){
+        setLogs(lg);
+    }
+    console.log(logs)
+}
+
 const POinfo = (PO) =>{
     setAddedPOs({id:PO.id, title:PO.title, date:PO.date, status:PO.status, errorDIS:PO.errorDIS, errorID: PO.errorID});
 }
 
 //из дочернего компонента POItem вытаскиваем нужный элемент массива и удаляем, меняя состояние массива
-const delitePOs = (POs) => {
+/*const delitePOs = (POs) => {
 setPosts(posts.filter(p=>p.id!==POs.id))
-}
+}*/
 
 /*const [modal, setModal] = useState(false);*/
 /*переменная modal для отслеживания, включено модальное окно или нет, по умолчанию - нет */
@@ -90,11 +104,11 @@ const sortedAndSearchedPOs = useMemo(() => {
 
 
     return (
-        <div className={classes.Workspace}>
-            <NavigationForm setAddedPO={POinfo} filter={filter} setFilter={setFilter} delite={delitePOs} posts={sortedAndSearchedPOs} title="Cписок программного обеспечения"/>
-            <POInfo addedPO={addedPOs}/>
+        <div className={classes.WorkspaceLogs}>
+            <NavigationForm setAddedPO={logOfPO} filter={filter} setFilter={setFilter} posts={sortedAndSearchedPOs} title="Cписок программного обеспечения" logsOfPO={logOfPO}/>
+            <LogsForm logs={logs}/>
         </div>
     );
 };
 
-export default Workspace;
+export default WorkspaceLogs;

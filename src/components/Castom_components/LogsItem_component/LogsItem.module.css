@@ -1,0 +1,12 @@
+.LogsItem{
+    justify-content: space-around;
+    align-items: center;
+    display: flex;
+    padding: 15px;
+    border: 2px solid rgb(65,88,208);
+    margin-top: 15px;   
+}
+.log_description{   
+    display: inline-block;
+    justify-content: space-around;
+}
