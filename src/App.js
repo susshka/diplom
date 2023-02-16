@@ -65,11 +65,15 @@ const [userTitle, setUserTitle]=useState("Авторизуйтесь")
       <Routes>
         <Route path="/" element={<Layout userTitle={userTitle} logging={logging}/>}>
           <Route path="soft_info" element={
-            <RequireAuth userData={userData}>
+            <RequireAuth>
               <WorkspaceInfo posts={posts} setPosts={setPosts} usersData={usersData} saveUserData={saveUserData}/>
             </RequireAuth>
           }/>
-          <Route path="logs_list" element={<WorkspaceLogs posts={posts} setPosts={setPosts} usersData={usersData} saveUserData={saveUserData}/>}/>
+          <Route path="logs_list" element={
+            <RequireAuth>
+              <WorkspaceLogs posts={posts} setPosts={setPosts} usersData={usersData} saveUserData={saveUserData}/>
+            </RequireAuth>
+          }/>
           {/*<Route path="auth" element={<ModalAuth modal={modal} setModal={setModal} saveUserData={saveUserData} setLogging={setLogging} setUserTitle={setUserTitle}/>}/>*/}
           <Route path='auth' element={<LoginPage/>}/>
         </Route>  
