@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import Button from '../../UI/button/Button';
 import Input from '../../UI/input/Input';
 import classes from "./AuthorizForm.module.css"
-const AuthorizForm = ({saveUD, setVizible, visible,setLogging, setUserTitle}) => {
+import { useNavigate } from 'react-router-dom'
+const AuthorizForm = ({saveUD, setVizible, visible,setLogging, setUserTitle, signin, frompage}) => {
     
     const [notice, setNotice] = useState("Введите логин и пароль")
-  
+    
     const [authorizData, setAuthorizData] = useState({login:"", password:""});
     
+    const navigate = useNavigate();
     if(notice==="Ошибка авторизации, попробуйте снова!"&&visible===false){
             setNotice("Введите логин и пароль")
             setUserTitle("Авторизуйтесь")
@@ -20,6 +22,7 @@ const AuthorizForm = ({saveUD, setVizible, visible,setLogging, setUserTitle}) =>
         }
         const check=saveUD(enteredData);
         if(check){
+            signin(enteredData.login, () => navigate(frompage, {replace: true}))
             setVizible(false)
             setLogging("Выйти")
             setUserTitle(enteredData.login)

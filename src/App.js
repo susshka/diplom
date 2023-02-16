@@ -4,9 +4,9 @@ import WorkspaceInfo from "./components/Castom_components/Workspase_component/Wo
 import "./styles/App.css";
 import Layout from "./components/UI/layout/Layout";
 import WorkspaceLogs from "./components/Castom_components/Workspase_component/WorkspaceLogs";
-import ModalAuth from "./components/Castom_components/ModalAuth_component/ModalAuth";
 import RequireAuth from './components/hoc/RequireAuth'
-
+import { AuthProvider } from "./components/hoc/AuthProvider";
+import LoginPage from "./pages/LoginPage";
 function App() {
   var Dates = new Array(4);
   var date = new Date(2018, 1, 15, 11, 33, 30, 0);
@@ -29,50 +29,52 @@ function App() {
 const [userData, setUserData] = useState({login:"", password:""});
 const saveUserData = (data) => {
     if (usersData.find(ud => ud.login===data.login && ud.password===data.password)){  
-        setUserData(data);
-        /*setUserData({login:data.login, password:data.password});*/
-        /*userData.login=data.login;
-        userData.password=data.password;*/
+        setUserData(data);  
         console.log(userData)
         return true;
     }
     else{
-        /*userData.login="";
-        userData.password="";*/
+        
         setUserData({login:"",password:""});
         console.log(userData)
         return false;
     }
 }
 
-const [logging, setLogging] = useState("Войти");
-const [modal, setModal] = useState(true);
 
+/*const [modal, setModal] = useState(true);*/
+const [logging, setLogging] = useState("Войти");
 const [userTitle, setUserTitle]=useState("Авторизуйтесь")
-    const EaE = () => {
-        if(userData.login==="" && userData.password===""&&logging==="Войти"){
-            setModal(true)
-        }
-        else if (userData.login!=="" && userData.password!==""&&logging==="Выйти"){
-            setLogging("Войти")
-            setUserData({login:"",password:""});
-            setUserTitle("Авторизуйтесь")
-        }
-}
+    
+
+
+/*const EaE = (navigate,signout) => {
+    if(userData.login==="" && userData.password===""&&logging==="Войти"){
+        setModal(true)
+    }
+    else if (userData.login!=="" && userData.password!==""&&logging==="Выйти"){
+        signout(() => navigate('/', {replace:true}))
+        setLogging("Войти")
+        setUserData({login:"",password:""});
+        setUserTitle("Авторизуйтесь")
+    }
+}*/
   return (
     <div className="App">
-      
+    <AuthProvider users={usersData} setLogging={setLogging} setUserTitle={setUserTitle}>
       <Routes>
-        <Route path="/" element={<Layout logging={logging} userTitle={userTitle} EaE={EaE}/>}>
+        <Route path="/" element={<Layout userTitle={userTitle} logging={logging}/>}>
           <Route path="soft_info" element={
-            <RequireAuth>
+            <RequireAuth userData={userData}>
               <WorkspaceInfo posts={posts} setPosts={setPosts} usersData={usersData} saveUserData={saveUserData}/>
             </RequireAuth>
           }/>
           <Route path="logs_list" element={<WorkspaceLogs posts={posts} setPosts={setPosts} usersData={usersData} saveUserData={saveUserData}/>}/>
-          <Route path="auth" element={<ModalAuth modal={modal} setModal={setModal} saveUserData={saveUserData} setLogging={setLogging} setUserTitle={setUserTitle}/>}/>
+          {/*<Route path="auth" element={<ModalAuth modal={modal} setModal={setModal} saveUserData={saveUserData} setLogging={setLogging} setUserTitle={setUserTitle}/>}/>*/}
+          <Route path='auth' element={<LoginPage/>}/>
         </Route>  
       </Routes>
+    </AuthProvider>
      {/*<Workspace/>*/}
     </div>
     );

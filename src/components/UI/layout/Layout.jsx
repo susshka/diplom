@@ -1,14 +1,25 @@
-import {NavLink, Outlet} from 'react-router-dom';
-
-import React, {useState} from 'react';
+import {NavLink, Outlet,useNavigate} from 'react-router-dom';
+import {useAuth} from '../../hook/useAuth'
+import React from 'react';
 import Header from '../header/Header';
 import Button from '../button/Button';
 import Navbar from '../navbar/Navbar';
 import classes from './Layout.module.css'
-import LinkButton from '../linkbutton/LinkButton';
 
-const Layout = ({userTitle, EaE, logging}) => {
+const Layout = ({logging, userTitle}) => {
     
+    const navigate = useNavigate();
+    const {signout, user} = useAuth();
+    
+    const hendlerOnclick = (event) =>{
+        event.preventDefault();
+        if(user){
+            signout(() => navigate('/', {replace:true}));
+        }
+        else{
+            navigate('/auth', {replace:true})
+        }
+    }
     return (
         <> 
             <Header>
@@ -17,7 +28,7 @@ const Layout = ({userTitle, EaE, logging}) => {
                 </div>
                 <div className={classes.user}>
                     <p style={{margin:"10px"}}>{userTitle}</p>
-                    <LinkButton to="/auth" style={{ marginRight:"15px"}} onClick={EaE}>{logging}</LinkButton>
+                    <Button style={{ marginRight:"15px"}} onClick={hendlerOnclick}>{logging}</Button>
                 </div>
             </Header>
             <Navbar style={{display:"block", alignItems:"center", justifyContent:"space-evenly"}}>
