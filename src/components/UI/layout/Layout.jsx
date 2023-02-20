@@ -14,7 +14,7 @@ const Layout = ({logging, userTitle}) => {
     const hendlerOnclick = (event) =>{
         event.preventDefault();
         if(user){
-            signout(() => navigate('/', {replace:true}));
+            signout(() => navigate('/auth', {replace:true}));
         }
         else{
             navigate('/auth', {replace:true})
@@ -35,6 +35,7 @@ const Layout = ({logging, userTitle}) => {
                 <div className="links">
                     <NavLink to="/soft_info"className="link">Состояние ПО</NavLink>
                     <NavLink to="/logs_list"className="link">Log-файлы</NavLink>
+                    <NavLink to="/"className="link">HomePage</NavLink>
                 </div>
             </Navbar>
             

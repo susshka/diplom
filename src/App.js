@@ -7,6 +7,7 @@ import WorkspaceLogs from "./components/Castom_components/Workspase_component/Wo
 import RequireAuth from './components/hoc/RequireAuth'
 import { AuthProvider } from "./components/hoc/AuthProvider";
 import LoginPage from "./pages/LoginPage";
+import HomePage from "./pages/HomePage";
 function App() {
   var Dates = new Array(4);
   var date = new Date(2018, 1, 15, 11, 33, 30, 0);
@@ -64,6 +65,7 @@ const [userTitle, setUserTitle]=useState("Авторизуйтесь")
     <AuthProvider users={usersData} setLogging={setLogging} setUserTitle={setUserTitle}>
       <Routes>
         <Route path="/" element={<Layout userTitle={userTitle} logging={logging}/>}>
+          <Route index element={<HomePage/>}/>
           <Route path="soft_info" element={
             <RequireAuth>
               <WorkspaceInfo posts={posts} setPosts={setPosts} usersData={usersData} saveUserData={saveUserData}/>

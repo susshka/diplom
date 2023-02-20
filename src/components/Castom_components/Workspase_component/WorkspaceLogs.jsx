@@ -47,7 +47,7 @@ const saveUserData = (data) => {
 setPosts([...posts, newPO])
 }*/
 
-const [addedPOs, setAddedPOs]= useState({id:null, title:"", date:null, status:"", errorID:"",errorDIS:""})
+/*const [addedPOs, setAddedPOs]= useState({id:null, title:"", date:null, status:"", errorID:"",errorDIS:""})*/
 
 /*Нужно создать функцию, которую передадим кнопке инфо, которая будет делать "запрос" и менять состояние некой переменной*/
 const [logs, setLogs] = useState([])
@@ -63,9 +63,9 @@ const logOfPO = (PO) =>{
     console.log(logs)
 }
 
-const POinfo = (PO) =>{
+/*const POinfo = (PO) =>{
     setAddedPOs({id:PO.id, title:PO.title, date:PO.date, status:PO.status, errorDIS:PO.errorDIS, errorID: PO.errorID});
-}
+}*/
 
 //из дочернего компонента POItem вытаскиваем нужный элемент массива и удаляем, меняя состояние массива
 /*const delitePOs = (POs) => {

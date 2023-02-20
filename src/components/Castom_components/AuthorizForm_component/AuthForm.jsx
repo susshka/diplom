@@ -10,7 +10,7 @@ const AuthForm = () => {
     const {signin} = useAuth();
     const [authorizData, setAuthorizData] = useState({login:"", password:""});
 
-    const fromPage = location.state?.from?.pathname || '/';
+    const fromPage = location.state?.from?.pathname || '/auth';
 
     const hendlerSubmit = (event) =>{
         event.preventDefault();
@@ -22,7 +22,7 @@ const AuthForm = () => {
         <form className={classes.AuthorizForm} onSubmit={hendlerSubmit}>
             <strong style={{display:"flex", justifyContent:"center"}}>Вход</strong>
             <Input type="text" required={true} placeholder="Логин" value={authorizData.login} onChange={e =>  setAuthorizData({...authorizData, login: e.target.value})}/>
-            <Input type="text" required={true} placeholder="Пароль" value={authorizData.password} onChange={e =>  setAuthorizData({...authorizData, password: e.target.value})}/>
+            <Input type="password" required={true} placeholder="Пароль" value={authorizData.password} onChange={e =>  setAuthorizData({...authorizData, password: e.target.value})}/>
             <div style={{display:"flex", justifyContent:"center"}}>
                 <Button type="submit">Войти</Button>
             </div>
