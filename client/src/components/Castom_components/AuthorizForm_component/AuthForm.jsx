@@ -16,7 +16,7 @@ const AuthForm = () => {
         event.preventDefault();
         const form = event.target;
         console.log(authorizData.login)
-        signin(authorizData.login, authorizData.password, () => navigate(fromPage, {replace:true}));
+        signin(authorizData.login, authorizData.password, () => navigate('/', {replace:true}));
     }
     return (
         <form className={classes.AuthorizForm} onSubmit={hendlerSubmit}>

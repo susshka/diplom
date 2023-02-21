@@ -33,9 +33,9 @@ const Layout = ({logging, userTitle}) => {
             </Header>
             <Navbar style={{display:"block", alignItems:"center", justifyContent:"space-evenly"}}>
                 <div className="links">
-                    <NavLink to="/soft_info"className="link">Состояние ПО</NavLink>
-                    <NavLink to="/logs_list"className="link">Log-файлы</NavLink>
-                    <NavLink to="/"className="link">HomePage</NavLink>
+                    <NavLink to="/" className="link">HomePage</NavLink>
+                    <NavLink to="/soft_info" className="link">Состояние ПО</NavLink>
+                    <NavLink to="/logs_list" className="link">Log-файлы</NavLink>
                 </div>
             </Navbar>
             

@@ -7,7 +7,47 @@ export const AuthProvider = ({children, users, setUserTitle, setLogging}) => {
     const [user, setUser] = useState(null);
 
     const signin = (usr, pw, cb) => {
-        if (users.find(ud => ud.login===usr && ud.password===pw)){  
+        var msg =''
+        axios.get("/users/"+usr)
+        .then(
+            (result) => {
+                msg = result.data.message
+                console.log("Успех поиска пользователя в бд! "+ msg)
+                /*cb("Такой пользователь существует", false)*/
+                 if(msg==="This user find on base"){
+                     axios.post("/login", {'login':usr, 'password':pw})
+                     .then(
+                         (result) => {
+                            msg = result.statusText
+                            console.log("Успех получения токена!"+msg)
+                            setUser({'user':usr, 'password':pw, 'access_token': result.data.access_token});
+                            setLogging("Выйти")
+                            setUserTitle(usr)
+                            cb();
+                         },
+                         (error) => {
+                             msg=error.message
+                             console.log("Ошибка получения токена: "+msg)
+                             setUser(null);
+                             cb();
+                         }
+                     ) 
+                 }
+                 else if(msg === "No users with this login"){
+                    console.log("Такого поользователя нет"+ msg)
+                    setUser(null);
+                    cb();
+                 }
+            },
+            (error) => {
+                msg=error.message
+                console.log("Ошибка поиска пользователя в бд: "+msg)
+                setUser(null);
+                cb();
+            }
+        )
+
+       /* if (users.find(ud => ud.login===usr && ud.password===pw)){  
             setUser({user:usr, password:pw});
             setLogging("Выйти")
             setUserTitle(usr)
@@ -16,7 +56,7 @@ export const AuthProvider = ({children, users, setUserTitle, setLogging}) => {
         else {
             setUser(null);
             cb();
-        }
+        }*/
     }
     const signout = (cb) =>{
         setLogging("Войти")
