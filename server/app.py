@@ -38,7 +38,16 @@ Base.metadata.create_all(bind=engine)
 @app.route('/users', methods=['GET'])
 def get_users():
     users = User.query.all()
-    return jsonify(users)
+    usrs = []
+    for x in users:
+        usrs.append(
+            {
+                'id': x.id,
+                'login':x.login,
+                'password':x.password    
+            }
+        )
+    return jsonify(usrs)
 
 @app.route('/users/<string:user_login>', methods=['GET'])
 def get_user(user_login):

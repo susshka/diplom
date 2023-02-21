@@ -28,7 +28,6 @@ export const AuthProvider = ({children, users, setUserTitle, setLogging}) => {
         if(pwd === checkpwd){
             //тут get-запрос к users на проверку наличия такого юзера в базе, если нет такого, продолжить регистрацию
                 var msg =''
-                var err =''
                 axios.get("/users/"+log)
                 .then(
                     (result) => {
@@ -36,7 +35,18 @@ export const AuthProvider = ({children, users, setUserTitle, setLogging}) => {
                        console.log(msg)
                        /*cb("Такой пользователь существует", false)*/
                         if(msg==="No users with this login"){
-                            cb("Таких пользователей нет", true)
+                            axios.post("/register", {'login':log, 'password':pwd})
+                            .then(
+                                (result) => {
+                                    console.log(result.data)
+                                    cb("Регистрация прошла успешно", true)
+                                },
+                                (error) => {
+                                    msg=error.response.data.message
+                                    console.log(msg)
+                                    cb(msg, false)
+                                }
+                            ) 
                         }
                         else if(msg === "This user find on base"){
                             cb("Такой пользователь существует", false)
@@ -46,7 +56,6 @@ export const AuthProvider = ({children, users, setUserTitle, setLogging}) => {
                         msg=error.response.data.message
                         console.log(msg)
                         cb(msg, false)
-                        err=error
                     }
                 )
 

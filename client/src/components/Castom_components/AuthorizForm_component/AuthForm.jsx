@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import classes from './AuthorizForm.module.css'
-import {useLocation, useNavigate} from 'react-router-dom'
+import {NavLink, useLocation, useNavigate} from 'react-router-dom'
 import {useAuth} from '../../hook/useAuth'
 import Input from '../../UI/input/Input';
 import Button from '../../UI/button/Button';
@@ -26,6 +26,7 @@ const AuthForm = () => {
             <div style={{display:"flex", justifyContent:"center"}}>
                 <Button type="submit">Войти</Button>
             </div>
+            <NavLink to="/register"className={classes.link}>Зарегестрироваться</NavLink>
         </form>
     );
 };

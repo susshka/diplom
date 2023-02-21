@@ -7,4 +7,17 @@
     margin: 5px;
     padding: 5px;
 
+   
+}
+.list{
+    height: fit-content;
+    justify-content: space-evenly;
+    display: block;
+    align-items: center;
+    padding: 15px; 
+    margin-bottom: 15px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 0.5px solid #1b2b4c;
+    background-color: white;
 }

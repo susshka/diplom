@@ -31,13 +31,16 @@ const HomePage = (props) => {
     else{
         return(
             <div className={classes.HomePage}>
-                <ul>
-                    {testUsers.map((item) => (
-                        <li key={item.id}>
-                            {item.username} {item.password}
-                        </li>
-                    ))}
-                </ul>
+                <div className={classes.list}>
+                    <strong style={{display:"block", justifyContent:"center"}}>Список зарегестрированных пользователей</strong>
+                    <ul style={{listStylePosition:"inside"}}>
+                        {testUsers.map((item) => (
+                            <li key={item.id}>
+                                {item.login} 
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             </div>
         );
     }

@@ -10,3 +10,19 @@
     border: 0.5px solid #1b2b4c;
     background-color: white;
 }
+.link{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-size: small;
+    text-decoration: none;
+    color: #0f7afc;
+   /* border-bottom: 1px solid;
+    border-bottom-color: rgba(15, 122, 252, 0.2);*/
+}
+.link :hover{
+    text-decoration: none;
+    color: #4160ea;
+    border-bottom: 1px solid;
+    border-bottom-color: #4160ea73;
+}
