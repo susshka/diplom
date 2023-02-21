@@ -10,7 +10,7 @@
 ### `cd server`
 ### `pip instal pipenv`
 ### `pipenv install`
-### `pip instal shell`
+### `pipenv shell`
 
 После запуска 
 ### `pip instal shell`
