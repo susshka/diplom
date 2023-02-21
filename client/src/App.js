@@ -66,7 +66,11 @@ const [userTitle, setUserTitle]=useState("Авторизуйтесь")
     <AuthProvider users={usersData} setLogging={setLogging} setUserTitle={setUserTitle}>
       <Routes>
         <Route path="/" element={<Layout userTitle={userTitle} logging={logging}/>}>
-          <Route index element={<HomePage/>}/>
+          <Route index element={
+            <RequireAuth>
+              <HomePage/>
+            </RequireAuth>
+          }/>
           <Route path="soft_info" element={
             <RequireAuth>
               <WorkspaceInfo posts={posts} setPosts={setPosts} usersData={usersData} saveUserData={saveUserData}/>

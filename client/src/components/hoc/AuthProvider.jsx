@@ -18,6 +18,7 @@ export const AuthProvider = ({children, users, setUserTitle, setLogging}) => {
                      axios.post("/login", {'login':usr, 'password':pw})
                      .then(
                          (result) => {
+                            console.log(result)
                             msg = result.statusText
                             console.log("Успех получения токена!"+msg)
                             setUser({'user':usr, 'password':pw, 'access_token': result.data.access_token});

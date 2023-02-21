@@ -13,6 +13,8 @@ pyodbc = "*"
 flask-jwt-extended = "*"
 passlib = "*"
 bcrypt = "*"
+marshmallow = "*"
+flask-apispec = "*"
 
 [requires]
 python_version = "3.9.1"

@@ -1,26 +1,39 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import classes from './HomePage.module.css'
+import {useAuth} from '../components/hook/useAuth'
+
 const HomePage = (props) => {
 
     const [testUsers, setTestUsers] = useState([]);
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
+    const {user} = useAuth();
+    var header ={}
+
+    if(user){
+        header = {"Authorization" :"Bearer "+user.access_token} 
+        
+    }
+    else{
+        header ={}
+    }
+
     useEffect(() => {
-        axios.get("/users")
+        axios({url:"/users", method: 'get', headers:header})
         .then(
             (result) => {
                 setIsLoaded(true);
                 setTestUsers(result.data)
-                console.log(result.data)
             },
             (error) => {
+                console.log(error)
                 setIsLoaded(true);
                 setError(error);
             }
         )
-    },[])
-
+     },[])
+    
 
     if(error){
         return (<div className={classes.HomePage}>Ошибка: {error.message}</div>);

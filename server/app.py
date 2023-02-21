@@ -6,6 +6,10 @@ from sqlalchemy import create_engine, engine
 from sqlalchemy.engine import URL
 from flask_jwt_extended import JWTManager, jwt_required #required ставится под роутом, чтобы к нему был доступ только при авторизованности (при вызове запроса в параметр heders передается токен)
 from config import Config
+from apispec.ext.marshmallow import MarshmallowPlugin
+from apispec import APISpec
+from flask_apispec.extension import FlaskApiSpec
+from schemas import UserSchema
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -30,15 +34,29 @@ Base.query = session.query_property()
 
 jwt = JWTManager(app)
 
+docs = FlaskApiSpec()
+docs.init_app(app)
+
+app.config.update({
+    'APISPEC_SPEC': APISpec(
+        title='app',
+        version='v1',
+        openapi_version='2.0',
+        plugins=[MarshmallowPlugin()],
+    ),
+    'APISPEC_SWAGGER_URL':'/swagger'
+})
+
 from models import *
 
 Base.metadata.create_all(bind=engine)
 
 
 @app.route('/users', methods=['GET'])
+@jwt_required()
 def get_users():
     users = User.query.all()
-    usrs = []
+    '''usrs = []
     for x in users:
         usrs.append(
             {
@@ -47,7 +65,9 @@ def get_users():
                 'password':x.password    
             }
         )
-    return jsonify(usrs)
+    '''
+    schema = UserSchema(many=True)
+    return jsonify(schema.dump(users))
 
 @app.route('/users/<string:user_login>', methods=['GET'])
 def get_user(user_login):
