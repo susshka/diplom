@@ -8,6 +8,7 @@ import RequireAuth from './components/hoc/RequireAuth'
 import { AuthProvider } from "./components/hoc/AuthProvider";
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
+import RegisterPage from "./pages/RegisterPage";
 function App() {
   var Dates = new Array(4);
   var date = new Date(2018, 1, 15, 11, 33, 30, 0);
@@ -78,6 +79,7 @@ const [userTitle, setUserTitle]=useState("Авторизуйтесь")
           }/>
           {/*<Route path="auth" element={<ModalAuth modal={modal} setModal={setModal} saveUserData={saveUserData} setLogging={setLogging} setUserTitle={setUserTitle}/>}/>*/}
           <Route path='auth' element={<LoginPage/>}/>
+          <Route path='register' element={<RegisterPage/>}/>
         </Route>  
       </Routes>
     </AuthProvider>

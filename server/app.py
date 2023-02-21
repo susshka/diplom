@@ -40,6 +40,14 @@ def get_users():
     users = User.query.all()
     return jsonify(users)
 
+@app.route('/users/<string:user_login>', methods=['GET'])
+def get_user(user_login):
+    check = User.query.filter(User.login==user_login).first()
+    if not check:
+        return {'message':'No users with this login'}, 200
+    return {'message':'This user find on base'}, 200
+
+'''
 @app.route('/users', methods=['POST'])
 def add_users():
     new_user = request.json
@@ -62,8 +70,8 @@ def delete_users(user_id):
        if x['id'] == user_id:
            idx = users.index(x)
     users.pop(idx)
-    return '', 204
-
+    return '', 204 
+'''
 @app.route('/register', methods=['POST'])
 def register():
     params = request.json

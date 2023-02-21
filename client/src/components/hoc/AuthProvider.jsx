@@ -1,4 +1,5 @@
-import {createContext, useState} from 'react';
+import {createContext, useState, useEffect} from 'react';
+import axios from 'axios';
 
 export const AuthContext = createContext(null);
 
@@ -23,8 +24,40 @@ export const AuthProvider = ({children, users, setUserTitle, setLogging}) => {
         setUser(null);
         cb();
     }
+    const register = (log, pwd, checkpwd, cb) => {
+        if(pwd === checkpwd){
+            //тут get-запрос к users на проверку наличия такого юзера в базе, если нет такого, продолжить регистрацию
+                var msg =''
+                var err =''
+                axios.get("/users/"+log)
+                .then(
+                    (result) => {
+                       msg = result.data.message
+                       console.log(msg)
+                       /*cb("Такой пользователь существует", false)*/
+                        if(msg==="No users with this login"){
+                            cb("Таких пользователей нет", true)
+                        }
+                        else if(msg === "This user find on base"){
+                            cb("Такой пользователь существует", false)
+                        }
+                    },
+                    (error) => {
+                        msg=error.response.data.message
+                        console.log(msg)
+                        cb(msg, false)
+                        err=error
+                    }
+                )
 
-    const value ={user, signin, signout}
+            //иначе - вывод колбека с собщением, что такой юзер есть
+        }
+        else{
+            cb("Пароли не совпадают", false);
+        }
+    }
+
+    const value ={user, signin, signout, register}
 
     return <AuthContext.Provider value={value}>
         {children}
