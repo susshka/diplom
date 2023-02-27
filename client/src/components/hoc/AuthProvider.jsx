@@ -92,6 +92,9 @@ export const AuthProvider = ({children, users, setUserTitle, setLogging}) => {
                         else if(msg === "This user find on base"){
                             cb("Такой пользователь существует", false)
                         }
+                        else{
+                            cb("Ошибка проверки пользователя в бд", false)
+                        }
                     },
                     (error) => {
                         msg=error.response.data.message

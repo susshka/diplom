@@ -9,7 +9,9 @@ from config import Config
 from apispec.ext.marshmallow import MarshmallowPlugin
 from apispec import APISpec
 from flask_apispec.extension import FlaskApiSpec
-from schemas import UserSchema
+from schemas import UserSchema, AuthSchema
+from flask_apispec import use_kwargs, marshal_with
+import logging
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -51,29 +53,40 @@ from models import *
 
 Base.metadata.create_all(bind=engine)
 
+def setup_logger():
+    logger=logging.getLogger(__name__)
+    logger.setLevel(logging.DEBUG)
+    
+    formatter = logging.Formatter('%(asctime)s:%(name)s:%(levelname)s:%(message)s')
+    filehandler = logging.FileHandler('./log/api.log')
+    filehandler.setFormatter(formatter)
+    logger.addHandler(filehandler)
+    
+    return logger
+
+logger = setup_logger()
 
 @app.route('/users', methods=['GET'])
 @jwt_required()
+@marshal_with(UserSchema(many=True)) #декаратору передается схема для сериализации данных в json
 def get_users():
-    users = User.query.all()
-    '''usrs = []
-    for x in users:
-        usrs.append(
-            {
-                'id': x.id,
-                'login':x.login,
-                'password':x.password    
-            }
-        )
-    '''
-    schema = UserSchema(many=True)
-    return jsonify(schema.dump(users))
+    try:
+        users = User.query.all()
+    except Exception as e:
+        logger.warning(f' Users-read action falled with errors: {e}')
+        return {'message': str(e)}, 400
+    return users
 
 @app.route('/users/<string:user_login>', methods=['GET'])
+@marshal_with(UserSchema)
 def get_user(user_login):
-    check = User.query.filter(User.login==user_login).first()
-    if not check:
-        return {'message':'No users with this login'}, 200
+    try:
+        check = User.query.filter(User.login==user_login).first()
+        if not check:
+            return {'message':'No users with this login'}, 200
+    except Exception as e:
+        logger.warning(f' User:{user_login} - read action falled with errors: {e}')
+        return {'message': str(e)}, 400
     return {'message':'This user find on base'}, 200
 
 '''
@@ -102,24 +115,50 @@ def delete_users(user_id):
     return '', 204 
 '''
 @app.route('/register', methods=['POST'])
-def register():
-    params = request.json
-    user = User(**params)
-    session.add(user)
-    session.commit()
-    token = user.get_token()
+@use_kwargs(UserSchema) #десериализация принимаемых данных по схеме для передачи в модель
+@marshal_with(AuthSchema) #сериализация данных по схеме для отображения 
+def register(**kwargs): #принимает аргументы
+    #params = request.json #для получения параметров без сериализации
+    try:
+        user = User(**kwargs) #параметры, провренные по схеме, передаются в модель
+        session.add(user)
+        session.commit()
+        token = user.get_token()
+    except Exception as e:
+        logger.warning(f' Register action falled with errors: {e}')
+        return {'message': str(e)}, 400
     return {'access_token': token}
 
 @app.route('/login', methods=['POST'])
-def login():
-    params = request.json
-    user = User.authenticate(**params)
-    token = user.get_token()
+@use_kwargs(UserSchema(only=('login','password'))) #ограничиваем передачу параметров в модель по схеме(только поля логин и пароль)
+@marshal_with(AuthSchema)
+def login(**kwargs):
+    #params = request.json
+    try:    
+        user = User.authenticate(**kwargs)
+        token = user.get_token()
+    except Exception as e:
+        logger.warning(f' Login action falled with errors: {e}')
+        return {'message': str(e)}, 400    
     return {'access_token': token}
 
 @app.teardown_appcontext
 def shutdown_session(exeption=None):
     session.remove()
+    
+@app.errorhandler(422)
+def error_handler(err):
+    headers = err.data.get('headers', None)
+    messages = err.data.get('messages',['Invalid request'])
+    if headers:
+        return jsonify({'message':messages}, 400, headers)
+    else:
+        return jsonify({'message':messages}, 400)
+    
+docs.register(login)
+docs.register(register)
+docs.register(get_user)
+docs.register(get_users)
 
 if __name__ == '__main__':
     app.run()

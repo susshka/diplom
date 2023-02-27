@@ -2,6 +2,7 @@ from app import db, session, Base
 from flask_jwt_extended import create_access_token
 from datetime import timedelta
 from passlib.hash import bcrypt
+from sqlalchemy.dialects import postgresql
 
 class User(Base):
     __tablename__= 'users'
@@ -28,4 +29,26 @@ class User(Base):
             raise Exception('No user with this password')
         return user
     
+class General(Base):
+    __tablename__= 'generals'
+    soft_name = db.Column(db.String(100), primary_key=True)
+    soft_code = db.Column(db.String(100), primary_key=True)
+    save_type_logs = db.Column(db.String(50), nullable=False)
+    path_dir = db.Column(db.String(500))
+    server_name = db.Column(db.String(100))
+    db_name = db.Column(db.String(100))
+    table_name = db.Column(db.String(100))
+    user = db.Column(db.String(100))
+    password = db.Column(db.String(100))
+    watching = db.Column(db.Boolean,  nullable=False, default=True)
+    time_watching= db.Column(db.Integer,  nullable=False, default=1)
+    er = relationship('Error', backref='general', uselist=False)
+    
+class Error(Base):
+    __tablename__='errors'
+    err_code = db.Column(db.String(100), primary_key=True)
+    err_descr = db.Column(db.String(200), primary_key=True)
+    err_status = db.Column(db.String(100), primary_key=True)
+    coef_status = db.Column(db.Float, nullable=False)
+    soft_code = db.Column(db.String(100), foreignKey='generals.soft_code')
    
