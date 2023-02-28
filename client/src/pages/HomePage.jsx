@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import classes from './HomePage.module.css'
 import {useAuth} from '../components/hook/useAuth'
+import {useSoft} from '../components/hook/useSoft'
 
 const HomePage = (props) => {
 
@@ -9,14 +10,16 @@ const HomePage = (props) => {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const {user} = useAuth();
+    const {setSoftList} = useSoft();
+
     var header ={}
 
     if(user){
-        header = {"Authorization" :"Bearer "+user.access_token} 
-        
+        header = {"Authorization" :"Bearer "+user.access_token}     
     }
     else{
         header ={}
+        
     }
 
     useEffect(() => {
@@ -25,13 +28,15 @@ const HomePage = (props) => {
             (result) => {
                 setIsLoaded(true);
                 setTestUsers(result.data)
+                setError(null);
             },
             (error) => {
                 console.log(error)
-                setIsLoaded(true);
+                setIsLoaded(false);
                 setError(error);
             }
         )
+           setSoftList();
      },[])
     
 

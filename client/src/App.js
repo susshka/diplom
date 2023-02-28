@@ -9,7 +9,10 @@ import { AuthProvider } from "./components/hoc/AuthProvider";
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
 import RegisterPage from "./pages/RegisterPage";
+import { useAuth } from "./components/hook/useAuth";
+import {SoftProvider} from './components/hoc/SoftProvider'
 function App() {
+
   var Dates = new Array(4);
   var date = new Date(2018, 1, 15, 11, 33, 30, 0);
   for(var p = 0; p < 4; p++) {
@@ -64,28 +67,30 @@ const [userTitle, setUserTitle]=useState("Авторизуйтесь")
   return (
     <div className="App">
     <AuthProvider users={usersData} setLogging={setLogging} setUserTitle={setUserTitle}>
-      <Routes>
-        <Route path="/" element={<Layout userTitle={userTitle} logging={logging}/>}>
-          <Route index element={
-            <RequireAuth>
-              <HomePage/>
-            </RequireAuth>
-          }/>
-          <Route path="soft_info" element={
-            <RequireAuth>
-              <WorkspaceInfo posts={posts}/>
-            </RequireAuth>
-          }/>
-          <Route path="logs_list" element={
-            <RequireAuth>
-              <WorkspaceLogs posts={posts}/>
-            </RequireAuth>
-          }/>
-          {/*<Route path="auth" element={<ModalAuth modal={modal} setModal={setModal} saveUserData={saveUserData} setLogging={setLogging} setUserTitle={setUserTitle}/>}/>*/}
-          <Route path='auth' element={<LoginPage/>}/>
-          <Route path='register' element={<RegisterPage/>}/>
-        </Route>  
-      </Routes>
+      <SoftProvider>
+        <Routes>
+          <Route path="/" element={<Layout userTitle={userTitle} logging={logging}/>}>
+            <Route index element={
+              <RequireAuth>
+                <HomePage/>
+              </RequireAuth>
+            }/>
+            <Route path="soft_info" element={
+              <RequireAuth>
+                <WorkspaceInfo posts={posts}/>
+              </RequireAuth>
+            }/>
+            <Route path="logs_list" element={
+              <RequireAuth>
+                <WorkspaceLogs posts={posts}/>
+              </RequireAuth>
+            }/>
+            {/*<Route path="auth" element={<ModalAuth modal={modal} setModal={setModal} saveUserData={saveUserData} setLogging={setLogging} setUserTitle={setUserTitle}/>}/>*/}
+            <Route path='auth' element={<LoginPage/>}/>
+            <Route path='register' element={<RegisterPage/>}/>
+          </Route>  
+        </Routes>
+      </SoftProvider>
     </AuthProvider>
      {/*<Workspace/>*/}
     </div>

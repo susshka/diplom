@@ -39,3 +39,4 @@ class ShowTableSchema(Schema):
     last_log_id = fields.String(validate=[validate.Length(max=100)])
     er = fields.Nested(ErrorSchema(only=('err_code',)))
     gen_c = fields.Nested(GeneralSchema(only=('soft_name','soft_code',)))
+    message = fields.String(dump_only=True)

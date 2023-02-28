@@ -74,7 +74,7 @@ class ShowTable(Base):
         foreign_keys="[ShowTable.sf_name, ShowTable.sf_code]",
         back_populates="stC",
     )
-    __table_args__ = (db.ForeignKeyConstraint([sf_name, sf_code],[General.soft_name, General.soft_code]),)
+    __table_args__ = (db.ForeignKeyConstraint([sf_name, sf_code],[General.soft_name, General.soft_code], onupdate="CASCADE", ondelete="SET NULL"),)
     
     
    
