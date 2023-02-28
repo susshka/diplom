@@ -13,41 +13,6 @@ const WorkspaceLogs = ({posts, setPosts, usersData, saveUserData}) => {
         Dates[p] = new Date(date);   
         //document.write("<br>"+d);// тут работает
     }
-/*
-    const usersData = [{login:"Aboba", password:"1234"},
-                        {login:"Lola", password:"12345"},
-                        {login:"Pop", password:"1111fg"}]
-    */
-    /*здесь в posts по-сути должны лежать значения из запроса к базе, который происходит перед созданием самого массива posts и отображает всё ПО*/
-    /* const [posts, setPosts]=useState([{id: Date.now()+1, title:'ARM NSI', date: Dates[0].toLocaleString(), status:"Ok", errorID:"23R345",errorDIS:"щукапмущшкомщушкомшщуком"},
-                                    {id: Date.now()+2, title:'SiteLine', date: Dates[1].toLocaleString(), status:"Ok",errorID:"23R33345",errorDIS:"цйумуцйщшмщшцйрмцрйм"},
-                                    {id: Date.now()+3, title:'Kontur', date: Dates[2].toLocaleString(), status:"Ok",errorID:"23R3rqd45",errorDIS:"цуйщшрмцйррррзршмцймсцвсй"},
-                                    {id: Date.now()+4, title:'Polearm', date: Dates[3].toLocaleString(), status:"Ok",errorID:"23Rr32345",errorDIS:"цйумщшгмцййршщвтсцймщшгм"},
-                                    ]); */
-
-/*const [POName, setPOName]=useState(); //для управляемого компонента
-const [PODiscr, setPODiscr]=useState(); //можно создавать состояния для каждой переменной*/
-/*const inpRef = useRef(); //для не управляемого компонента*/
-
-/*const userData= {login:"", password:""};
-const saveUserData = (data) => {
-    if (usersData.find(ud => ud.login===data.login && ud.password===data.password)){  
-        userData.login=data.login;
-        userData.password=data.password;
-        return true;
-    }
-    else{
-        userData.login="";
-        userData.password="";
-        return false;
-    }
-}*/
-
-/*const createPOs = (newPO) => {
-setPosts([...posts, newPO])
-}*/
-
-/*const [addedPOs, setAddedPOs]= useState({id:null, title:"", date:null, status:"", errorID:"",errorDIS:""})*/
 
 /*Нужно создать функцию, которую передадим кнопке инфо, которая будет делать "запрос" и менять состояние некой переменной*/
 const [logs, setLogs] = useState([])

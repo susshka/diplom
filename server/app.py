@@ -9,7 +9,7 @@ from config import Config
 from apispec.ext.marshmallow import MarshmallowPlugin
 from apispec import APISpec
 from flask_apispec.extension import FlaskApiSpec
-from schemas import UserSchema, AuthSchema, GeneralSchema, ErrorSchema
+from schemas import UserSchema, AuthSchema, GeneralSchema, ErrorSchema, ShowTableSchema
 from flask_apispec import use_kwargs, marshal_with
 import logging
 
@@ -166,6 +166,19 @@ def add_soft(**kwargs): #принимает аргументы
         logger.warning(f' Add soft on general table action falled with errors: {e}')
         return {'message': str(e)}, 400
     return soft
+
+
+@app.route('/show_table', methods=['GET'])
+#@jwt_required()
+@marshal_with(ShowTableSchema(many=True))
+def get_show_table():
+    try:
+        shtable = ShowTable.query.all()
+    except Exception as e:
+         logger.warning(f' ShowTable-read action falled with errors: {e}')
+         return {'message': str(e)}, 400
+    return shtable
+
 
 '''
 @app.route('/users', methods=['POST'])

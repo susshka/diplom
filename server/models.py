@@ -2,7 +2,7 @@ from app import db, session, Base
 from flask_jwt_extended import create_access_token
 from datetime import timedelta
 from passlib.hash import bcrypt
-from sqlalchemy.dialects import postgresql
+
 from sqlalchemy.orm import relationship
 
 class User(Base):
@@ -43,15 +43,38 @@ class General(Base):
     pwd = db.Column(db.String(100))
     watching = db.Column(db.Boolean,  nullable=False, default=True)
     time_watching= db.Column(db.Integer,  nullable=False, default=1)
-    er = relationship('Error', back_populates="sf")
+    er = relationship('Error', back_populates="gen")
+    stC = relationship('ShowTable', back_populates="gen_c")
+
     
     
 class Error(Base):
     __tablename__='errors'
-    err_code = db.Column(db.String(100), primary_key=True)
-    err_descr = db.Column(db.String(200), primary_key=True)
-    err_status = db.Column(db.String(100), primary_key=True)
+    err_code = db.Column(db.String(100), primary_key=True, unique=True)
+    stb = relationship('ShowTable', back_populates="er")
+    err_descr = db.Column(db.String(200))
+    err_status = db.Column(db.String(100))
     coef_status = db.Column(db.Float, nullable=False)
     sf_code = db.Column(db.String(100), db.ForeignKey('generals.soft_code'))
-    sf = relationship('General',  back_populates="er")
+    gen = relationship('General',  back_populates="er")
+    
+    
+class ShowTable(Base):
+    __tablename__='show_table'
+    id = db.Column(db.Integer, primary_key=True)
+    sf_name = db.Column(db.String(100)) 
+    sf_code = db.Column(db.String(100))
+    last_upd_date = db.Column(db.DateTime)
+    last_log_hash = db.Column(db.String(200))
+    last_log_id = db.Column(db.String(100))
+    err_cd = db.Column(db.String(100), db.ForeignKey('errors.err_code'))
+    er = relationship('Error',  back_populates="stb")
+    gen_c = relationship(
+        "General",
+        foreign_keys="[ShowTable.sf_name, ShowTable.sf_code]",
+        back_populates="stC",
+    )
+    __table_args__ = (db.ForeignKeyConstraint([sf_name, sf_code],[General.soft_name, General.soft_code]),)
+    
+    
    

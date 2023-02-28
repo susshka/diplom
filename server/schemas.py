@@ -29,7 +29,13 @@ class ErrorSchema(Schema):
     err_descr = fields.String(required=True, validate=[validate.Length(max=200)])
     err_status = fields.String(required=True, validate=[validate.Length(max=100)])
     coef_status = fields.Float(required=True)
-    sf = fields.Nested(GeneralSchema(only=('soft_code',)))
+    gen = fields.Nested(GeneralSchema(only=('soft_code',)))
     message = fields.String(dump_only=True)
     
-'''only=('soft_code',)'''
+class ShowTableSchema(Schema):
+    id = fields.Integer(dump_only=True)
+    last_upd_date = fields.DateTime()
+    last_log_hash = fields.String(validate=[validate.Length(max=200)])
+    last_log_id = fields.String(validate=[validate.Length(max=100)])
+    er = fields.Nested(ErrorSchema(only=('err_code',)))
+    gen_c = fields.Nested(GeneralSchema(only=('soft_name','soft_code',)))

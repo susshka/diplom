@@ -23,7 +23,7 @@ function App() {
                       {login:"Pop", password:"1111fg"}]
 
   /*здесь в posts по-сути должны лежать значения из запроса к базе, который происходит перед созданием самого массива posts и отображает всё ПО*/
-   const [posts, setPosts]=useState([{id: Date.now()+1, title:'ARM NSI', date: Dates[0].toLocaleString(), status:"Ok", errorID:"23R345",errorDIS:"щукапмущшкомщушкомшщуком"},
+const [posts, setPosts]=useState([{id: Date.now()+1, title:'ARM NSI', date: Dates[0].toLocaleString(), status:"Ok", errorID:"23R345",errorDIS:"щукапмущшкомщушкомшщуком"},
                                   {id: Date.now()+2, title:'SiteLine', date: Dates[1].toLocaleString(), status:"Ok",errorID:"23R33345",errorDIS:"цйумуцйщшмщшцйрмцрйм"},
                                   {id: Date.now()+3, title:'Kontur', date: Dates[2].toLocaleString(), status:"Ok",errorID:"23R3rqd45",errorDIS:"цуйщшрмцйррррзршмцймсцвсй"},
                                   {id: Date.now()+4, title:'Polearm', date: Dates[3].toLocaleString(), status:"Ok",errorID:"23Rr32345",errorDIS:"цйумщшгмцййршщвтсцймщшгм"},
@@ -73,12 +73,12 @@ const [userTitle, setUserTitle]=useState("Авторизуйтесь")
           }/>
           <Route path="soft_info" element={
             <RequireAuth>
-              <WorkspaceInfo posts={posts} setPosts={setPosts} usersData={usersData} saveUserData={saveUserData}/>
+              <WorkspaceInfo posts={posts}/>
             </RequireAuth>
           }/>
           <Route path="logs_list" element={
             <RequireAuth>
-              <WorkspaceLogs posts={posts} setPosts={setPosts} usersData={usersData} saveUserData={saveUserData}/>
+              <WorkspaceLogs posts={posts}/>
             </RequireAuth>
           }/>
           {/*<Route path="auth" element={<ModalAuth modal={modal} setModal={setModal} saveUserData={saveUserData} setLogging={setLogging} setUserTitle={setUserTitle}/>}/>*/}
