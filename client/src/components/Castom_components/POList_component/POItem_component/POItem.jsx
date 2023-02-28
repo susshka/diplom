@@ -10,12 +10,13 @@ const POItem = (props) => {
     return (
     <div className={classes.POItem}>
         <div className={classes.po_content}>
-          <strong>{props.number}</strong>
-          <strong>{props.post.title}</strong>
+          <strong>{props.post.id}</strong>
+          <strong>{props.post.soft_name}</strong>
+          <strong>{props.post.soft_code}</strong>
           <div className="po_description">
-              <p>{props.post.date}</p>
+              <p>{props.post.last_upd}</p>
           </div>
-          <strong>{props.post.status}</strong>
+          <strong>{props.post.err_code}</strong>
           <div className="po_btn">
             <Button onClick={() => props.setAddedPO(props.post)}>Инфо</Button>
           </div>

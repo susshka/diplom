@@ -11,8 +11,8 @@ const FilterPOs = ({filter, setFilter}) => {
                     value={filter.sort} /*При первой отрисовке равно пустой строке, позже заполняется в зависимости от выбора*/
                     defaultValue="Сортировка"
                     options={[
-                        {value:'title', name:'По названию'},
-                        {value:'date', name:'По последнему обновлению'}
+                        {value:'soft_name', name:'По названию'},
+                        {value:'last_upd', name:'По последнему обновлению'}
                     ]}
                 
                 />

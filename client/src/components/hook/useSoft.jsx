@@ -4,3 +4,6 @@ import {SoftContext} from '../hoc/SoftProvider';
 export function useSoft(){
     return useContext(SoftContext);
 }
+
+
+export default useSoft;
