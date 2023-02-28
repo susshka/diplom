@@ -9,3 +9,27 @@ class UserSchema(Schema):
 class AuthSchema(Schema):
     access_token = fields.String(dump_only=True)    
     message = fields.String(dump_only=True)
+    
+class GeneralSchema(Schema):
+    soft_name = fields.String(required=True, validate=[validate.Length(max=100)])
+    soft_code = fields.String(required=True, validate=[validate.Length(max=100)])
+    save_type_logs = fields.String(required=True, validate=[validate.Length(max=50)])
+    path_dir = fields.String(required=True, validate=[validate.Length(max=500)])
+    server_name = fields.String(required=True, validate=[validate.Length(max=100)])
+    databs_name = fields.String(required=True, validate=[validate.Length(max=100)])
+    table_name = fields.String(required=True, validate=[validate.Length(max=100)])
+    user_name = fields.String(required=True, validate=[validate.Length(max=100)])
+    pwd = fields.String(required=True, validate=[validate.Length(max=100)])
+    watching = fields.Boolean(required=True)
+    time_watching = fields.Integer(required=True)
+    message = fields.String(dump_only=True)
+    
+class ErrorSchema(Schema):
+    err_code = fields.String(required=True, validate=[validate.Length(max=100)])
+    err_descr = fields.String(required=True, validate=[validate.Length(max=200)])
+    err_status = fields.String(required=True, validate=[validate.Length(max=100)])
+    coef_status = fields.Float(required=True)
+    sf = fields.Nested(GeneralSchema(only=('soft_code',)))
+    message = fields.String(dump_only=True)
+    
+'''only=('soft_code',)'''

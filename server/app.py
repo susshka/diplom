@@ -9,7 +9,7 @@ from config import Config
 from apispec.ext.marshmallow import MarshmallowPlugin
 from apispec import APISpec
 from flask_apispec.extension import FlaskApiSpec
-from schemas import UserSchema, AuthSchema
+from schemas import UserSchema, AuthSchema, GeneralSchema, ErrorSchema
 from flask_apispec import use_kwargs, marshal_with
 import logging
 
@@ -88,6 +88,84 @@ def get_user(user_login):
         logger.warning(f' User:{user_login} - read action falled with errors: {e}')
         return {'message': str(e)}, 400
     return {'message':'This user find on base'}, 200
+
+@app.route('/errors', methods=['GET'])
+#@jwt_required()
+@marshal_with(ErrorSchema(many=True))
+def get_errors_all():
+    try:
+        errors = Error.query.all()
+    except Exception as e:
+         logger.warning(f' Soft errors table read action falled with errors: {e}')
+         return {'message': str(e)}, 400
+    return errors
+
+@app.route('/errors/<string:soft_code>', methods=['GET'])
+#@jwt_required()
+@marshal_with(ErrorSchema(many=True))
+def get_errors_soft(soft_code):
+    try:
+        errors = Error.query.filter(Error.sf_code==soft_code).all()
+        if not errors:
+            return {'message':'No errors for this soft'}, 200
+    except Exception as e:
+        logger.warning(f' (Soft code:{soft_code}) soft errors table action falled with errors: {e}')
+        return {'message': str(e)}, 400
+    return errors
+
+@app.route('/errors', methods=['POST'])
+#@jwt_required()
+@use_kwargs(ErrorSchema) #десериализация принимаемых данных по схеме для передачи в модель
+@marshal_with(ErrorSchema) #сериализация данных по схеме для отображения 
+def add_error(**kwargs): #принимает аргументы
+    #params = request.json #для получения параметров без сериализации
+    try:
+        error = Error(**kwargs) #параметры, провренные по схеме, передаются в модель
+        session.add(error)
+        session.commit()
+    except Exception as e:
+        logger.warning(f' Add soft-error on table action falled with errors: {e}')
+        return {'message': str(e)}, 400
+    return error
+
+@app.route('/general', methods=['GET'])
+#@jwt_required()
+@marshal_with(GeneralSchema(many=True))
+def get_general():
+    try:
+        general = General.query.all()
+    except Exception as e:
+         logger.warning(f' GeneralTable-read action falled with errors: {e}')
+         return {'message': str(e)}, 400
+    return general
+
+@app.route('/general/<string:soft_code>', methods=['GET'])
+#@jwt_required()
+@marshal_with(GeneralSchema(many=True))
+def get_general_soft(soft_code):
+    try:
+        soft = General.query.filter(General.sf_code==soft_code).all()
+        if not soft:
+            return {'message':'No soft with this code'}, 200
+    except Exception as e:
+        logger.warning(f' (Soft code:{soft_code}) general table read action falled with error: {e}')
+        return {'message': str(e)}, 400
+    return soft
+
+@app.route('/general', methods=['POST'])
+#@jwt_required()
+@use_kwargs(GeneralSchema) #десериализация принимаемых данных по схеме для передачи в модель
+@marshal_with(GeneralSchema) #сериализация данных по схеме для отображения 
+def add_soft(**kwargs): #принимает аргументы
+    #params = request.json #для получения параметров без сериализации
+    try:
+        soft = General(**kwargs) #параметры, провренные по схеме, передаются в модель
+        session.add(soft)
+        session.commit()
+    except Exception as e:
+        logger.warning(f' Add soft on general table action falled with errors: {e}')
+        return {'message': str(e)}, 400
+    return soft
 
 '''
 @app.route('/users', methods=['POST'])

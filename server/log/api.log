@@ -1,2 +1,103 @@
 2023-02-27 10:40:39,630:__main__:WARNING:login action falled with errors:No user with this password
 2023-02-27 10:45:03,757:__main__:WARNING: Login action falled with errors: No user with this password
+2023-02-28 10:32:38,158:app:ERROR:Exception on /errors [GET]
+Traceback (most recent call last):
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask_apispec\annotations.py", line 122, in wrapped
+    return wrapper(*args, **kwargs)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask_apispec\wrapper.py", line 29, in __call__
+    response = self.call_view(*args, **kwargs)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask_apispec\wrapper.py", line 52, in call_view
+    return self.func(*args, **kwargs)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\Desktop\project-app\app\server\app.py", line 101, in get_errors_all
+    return errors.sf_code
+AttributeError: 'list' object has no attribute 'sf_code'
+2023-02-28 10:32:40,944:app:ERROR:Exception on /errors [GET]
+Traceback (most recent call last):
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask_apispec\annotations.py", line 122, in wrapped
+    return wrapper(*args, **kwargs)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask_apispec\wrapper.py", line 29, in __call__
+    response = self.call_view(*args, **kwargs)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask_apispec\wrapper.py", line 52, in call_view
+    return self.func(*args, **kwargs)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\Desktop\project-app\app\server\app.py", line 101, in get_errors_all
+    return errors.sf_code
+AttributeError: 'list' object has no attribute 'sf_code'
+2023-02-28 10:33:24,661:app:ERROR:Exception on /errors [GET]
+Traceback (most recent call last):
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask_apispec\annotations.py", line 122, in wrapped
+    return wrapper(*args, **kwargs)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask_apispec\wrapper.py", line 29, in __call__
+    response = self.call_view(*args, **kwargs)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask_apispec\wrapper.py", line 52, in call_view
+    return self.func(*args, **kwargs)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\Desktop\project-app\app\server\app.py", line 101, in get_errors_all
+    return errors
+AttributeError: 'list' object has no attribute 'sf_code'
+2023-02-28 10:33:25,340:app:ERROR:Exception on /errors [GET]
+Traceback (most recent call last):
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask_apispec\annotations.py", line 122, in wrapped
+    return wrapper(*args, **kwargs)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask_apispec\wrapper.py", line 29, in __call__
+    response = self.call_view(*args, **kwargs)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask_apispec\wrapper.py", line 52, in call_view
+    return self.func(*args, **kwargs)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\Desktop\project-app\app\server\app.py", line 101, in get_errors_all
+    return errors
+AttributeError: 'list' object has no attribute 'sf_code'
+2023-02-28 10:48:00,878:__main__:WARNING: GeneralTable-read action falled with errors: Mapper 'Mapper[General(generals)]' has no property 'errors'.  If this property was indicated from other mappers or configure events, ensure registry.configure() has been called.
+2023-02-28 10:48:05,130:__main__:WARNING: GeneralTable-read action falled with errors: One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'Mapper[Error(errors)]'. Original exception was: Mapper 'Mapper[General(generals)]' has no property 'errors'.  If this property was indicated from other mappers or configure events, ensure registry.configure() has been called.
+2023-02-28 10:48:06,059:__main__:WARNING: GeneralTable-read action falled with errors: One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'Mapper[Error(errors)]'. Original exception was: Mapper 'Mapper[General(generals)]' has no property 'errors'.  If this property was indicated from other mappers or configure events, ensure registry.configure() has been called.
+2023-02-28 10:48:12,622:__main__:WARNING: Errors-read action falled with errors: One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'Mapper[Error(errors)]'. Original exception was: Mapper 'Mapper[General(generals)]' has no property 'errors'.  If this property was indicated from other mappers or configure events, ensure registry.configure() has been called.
+2023-02-28 10:48:23,437:__main__:WARNING: Errors-read action falled with errors: One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'Mapper[Error(errors)]'. Original exception was: Mapper 'Mapper[General(generals)]' has no property 'errors'.  If this property was indicated from other mappers or configure events, ensure registry.configure() has been called.
+2023-02-28 10:49:19,129:__main__:WARNING: Errors-read action falled with errors: Mapper 'Mapper[General(generals)]' has no property 'errors'.  If this property was indicated from other mappers or configure events, ensure registry.configure() has been called.
+2023-02-28 10:49:24,840:__main__:WARNING: Errors-read action falled with errors: One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'Mapper[Error(errors)]'. Original exception was: Mapper 'Mapper[General(generals)]' has no property 'errors'.  If this property was indicated from other mappers or configure events, ensure registry.configure() has been called.
+2023-02-28 10:49:26,628:__main__:WARNING: Errors-read action falled with errors: One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'Mapper[Error(errors)]'. Original exception was: Mapper 'Mapper[General(generals)]' has no property 'errors'.  If this property was indicated from other mappers or configure events, ensure registry.configure() has been called.
+2023-02-28 10:49:27,076:__main__:WARNING: Errors-read action falled with errors: One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'Mapper[Error(errors)]'. Original exception was: Mapper 'Mapper[General(generals)]' has no property 'errors'.  If this property was indicated from other mappers or configure events, ensure registry.configure() has been called.
+2023-02-28 10:49:27,253:__main__:WARNING: Errors-read action falled with errors: One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'Mapper[Error(errors)]'. Original exception was: Mapper 'Mapper[General(generals)]' has no property 'errors'.  If this property was indicated from other mappers or configure events, ensure registry.configure() has been called.
+2023-02-28 10:49:27,605:__main__:WARNING: Errors-read action falled with errors: One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'Mapper[Error(errors)]'. Original exception was: Mapper 'Mapper[General(generals)]' has no property 'errors'.  If this property was indicated from other mappers or configure events, ensure registry.configure() has been called.
+2023-02-28 10:49:27,748:__main__:WARNING: Errors-read action falled with errors: One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'Mapper[Error(errors)]'. Original exception was: Mapper 'Mapper[General(generals)]' has no property 'errors'.  If this property was indicated from other mappers or configure events, ensure registry.configure() has been called.
+2023-02-28 10:51:00,300:__main__:WARNING: GeneralTable-read action falled with errors: Mapper 'Mapper[General(generals)]' has no property 'errors'.  If this property was indicated from other mappers or configure events, ensure registry.configure() has been called.
+2023-02-28 10:51:27,766:__main__:WARNING: GeneralTable-read action falled with errors: One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'Mapper[Error(errors)]'. Original exception was: Mapper 'Mapper[General(generals)]' has no property 'errors'.  If this property was indicated from other mappers or configure events, ensure registry.configure() has been called.
+2023-02-28 10:51:28,038:__main__:WARNING: GeneralTable-read action falled with errors: One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'Mapper[Error(errors)]'. Original exception was: Mapper 'Mapper[General(generals)]' has no property 'errors'.  If this property was indicated from other mappers or configure events, ensure registry.configure() has been called.
+2023-02-28 10:51:28,209:__main__:WARNING: GeneralTable-read action falled with errors: One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'Mapper[Error(errors)]'. Original exception was: Mapper 'Mapper[General(generals)]' has no property 'errors'.  If this property was indicated from other mappers or configure events, ensure registry.configure() has been called.
+2023-02-28 10:51:28,381:__main__:WARNING: GeneralTable-read action falled with errors: One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'Mapper[Error(errors)]'. Original exception was: Mapper 'Mapper[General(generals)]' has no property 'errors'.  If this property was indicated from other mappers or configure events, ensure registry.configure() has been called.
+2023-02-28 10:51:49,052:__main__:WARNING: Errors-read action falled with errors: One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'Mapper[Error(errors)]'. Original exception was: Mapper 'Mapper[General(generals)]' has no property 'errors'.  If this property was indicated from other mappers or configure events, ensure registry.configure() has been called.
+2023-02-28 10:56:20,566:__main__:WARNING: Errors-read action falled with errors: Mapper 'Mapper[General(generals)]' has no property 'errors'.  If this property was indicated from other mappers or configure events, ensure registry.configure() has been called.
+2023-02-28 10:56:21,144:__main__:WARNING: Errors-read action falled with errors: One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'Mapper[Error(errors)]'. Original exception was: Mapper 'Mapper[General(generals)]' has no property 'errors'.  If this property was indicated from other mappers or configure events, ensure registry.configure() has been called.
+2023-02-28 10:56:21,312:__main__:WARNING: Errors-read action falled with errors: One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'Mapper[Error(errors)]'. Original exception was: Mapper 'Mapper[General(generals)]' has no property 'errors'.  If this property was indicated from other mappers or configure events, ensure registry.configure() has been called.
+2023-02-28 10:56:21,449:__main__:WARNING: Errors-read action falled with errors: One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'Mapper[Error(errors)]'. Original exception was: Mapper 'Mapper[General(generals)]' has no property 'errors'.  If this property was indicated from other mappers or configure events, ensure registry.configure() has been called.
+2023-02-28 10:56:21,696:__main__:WARNING: Errors-read action falled with errors: One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'Mapper[Error(errors)]'. Original exception was: Mapper 'Mapper[General(generals)]' has no property 'errors'.  If this property was indicated from other mappers or configure events, ensure registry.configure() has been called.
+2023-02-28 10:56:21,904:__main__:WARNING: Errors-read action falled with errors: One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'Mapper[Error(errors)]'. Original exception was: Mapper 'Mapper[General(generals)]' has no property 'errors'.  If this property was indicated from other mappers or configure events, ensure registry.configure() has been called.
+2023-02-28 10:56:22,064:__main__:WARNING: Errors-read action falled with errors: One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'Mapper[Error(errors)]'. Original exception was: Mapper 'Mapper[General(generals)]' has no property 'errors'.  If this property was indicated from other mappers or configure events, ensure registry.configure() has been called.
