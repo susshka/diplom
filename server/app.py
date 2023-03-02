@@ -152,6 +152,18 @@ def get_general_soft(soft_code):
         return {'message': str(e)}, 400
     return soft
 
+@app.route('/general/getid/<string:soft_code>',methods=['GET'])
+@marshal_with(GeneralSchema)
+def get_soft_id_gen(soft_code):
+    try:
+        soft = General.query.filter(General.soft_code==soft_code).first()
+        if not soft:
+            return {'message':'No soft with this code'}, 200
+    except Exception as e:
+        logger.warning(f' (Soft code:{soft_code}) general table get id action falled with error: {e}')
+        return {'message': str(e)}, 400
+    return soft.id
+
 @app.route('/general/check/<string:soft_code>', methods=['GET'])
 #@jwt_required()
 @marshal_with(GeneralSchema)
@@ -173,7 +185,7 @@ def add_soft(**kwargs): #принимает аргументы
     #params = request.json #для получения параметров без сериализации
     try:
         soft = General(**kwargs) #параметры, провренные по схеме, передаются в модель
-        session.add(soft)
+        session.add(soft) 
         session.commit()
     except Exception as e:
         logger.warning(f' Add soft on general table action falled with errors: {e}')

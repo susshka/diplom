@@ -32,7 +32,7 @@ class User(Base):
     
 class General(Base):
     __tablename__= 'generals'
-    id =db.Column(db.Integer, autoincrement=True, unique=True)
+    id =db.Column(db.Integer, primary_key=True, autoincrement=True)
     soft_name = db.Column(db.String(100), primary_key=True, unique=True)
     soft_code = db.Column(db.String(100), primary_key=True, unique=True)
     save_type_logs = db.Column(db.String(50), nullable=False)
@@ -50,6 +50,8 @@ class General(Base):
 
     def set_default_time(self):
         self.active_time_watching=self.default_time_watching
+    def get_id(self):
+        return self.id
         
     
 class Error(Base):
@@ -66,6 +68,7 @@ class Error(Base):
 class ShowTable(Base):
     __tablename__='show_table'
     id_sf =db.Column(db.Integer, primary_key=True)
+    id_sf_gen = db.Column(db.Integer)
     sf_name = db.Column(db.String(100)) 
     sf_code = db.Column(db.String(100))
     last_upd_date = db.Column(db.DateTime)
@@ -75,10 +78,10 @@ class ShowTable(Base):
     er = relationship('Error',  back_populates="stb")
     gen_c = relationship(
         "General",
-        foreign_keys="[ShowTable.sf_name, ShowTable.sf_code]",
+        foreign_keys="[ShowTable.sf_name, ShowTable.sf_code, ShowTable.id_sf_gen]",
         back_populates="stC",
     )
-    __table_args__ = (db.ForeignKeyConstraint([sf_name, sf_code],[General.soft_name, General.soft_code], onupdate="CASCADE", ondelete="SET NULL"),)
+    __table_args__ = (db.ForeignKeyConstraint([id_sf_gen, sf_name, sf_code],[General.id, General.soft_name, General.soft_code], onupdate="CASCADE", ondelete="SET NULL"),)
     
     
    

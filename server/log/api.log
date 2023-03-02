@@ -178,3 +178,40 @@ Traceback (most recent call last):
 TypeError: 'General' object is not iterable
 2023-03-02 09:10:37,185:__main__:WARNING: Login action falled with errors: No user with this password
 2023-03-02 10:47:46,793:__main__:WARNING: Login action falled with errors: No user with this password
+2023-03-02 13:50:34,565:__main__:WARNING: Add soft on general table action falled with errors: (pyodbc.IntegrityError) ('23000', '[23000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Невозможно вставить явное значение для столбца идентификаторов в таблице "generals", когда параметр IDENTITY_INSERT имеет значение OFF. (544) (SQLExecDirectW)')
+[SQL: INSERT INTO generals (id, soft_name, soft_code, save_type_logs, path_dir, server_name, databs_name, table_name, user_name, pwd, watching, default_time_watching, active_time_watching) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (None, 'ARM NSI', 'ARM1', 'network drive', '//ff/aa//dd//dd', None, None, None, None, None, 1, 30, 30)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2023-03-02 13:54:52,214:__main__:WARNING: Add soft on general table action falled with errors: (pyodbc.IntegrityError) ('23000', '[23000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Невозможно вставить явное значение для столбца идентификаторов в таблице "generals", когда параметр IDENTITY_INSERT имеет значение OFF. (544) (SQLExecDirectW)')
+[SQL: INSERT INTO generals (id, soft_name, soft_code, save_type_logs, path_dir, server_name, databs_name, table_name, user_name, pwd, watching, default_time_watching, active_time_watching) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (None, 'ARM NSI', 'ARM1', 'network drive', '//ff//ff//ff//ff', None, None, None, None, None, 1, 40, 40)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2023-03-02 14:11:47,166:__main__:WARNING: Add soft on general table action falled with errors: (pyodbc.IntegrityError) ('23000', '[23000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Невозможно вставить явное значение для столбца идентификаторов в таблице "generals", когда параметр IDENTITY_INSERT имеет значение OFF. (544) (SQLExecDirectW)')
+[SQL: INSERT INTO generals (id, soft_name, soft_code, save_type_logs, path_dir, server_name, databs_name, table_name, user_name, pwd, watching, default_time_watching, active_time_watching) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (None, 'ARM NSI', 'AREM5', 'network drive', 'DQWD', None, None, None, None, None, 1, 7, 7)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2023-03-02 14:16:04,087:__main__:WARNING: Add soft on general table action falled with errors: (pyodbc.IntegrityError) ('23000', '[23000] [Microsoft][ODBC Driver 17 for SQL Server][SQL Server]Невозможно вставить явное значение для столбца идентификаторов в таблице "generals", когда параметр IDENTITY_INSERT имеет значение OFF. (544) (SQLExecDirectW)')
+[SQL: INSERT INTO generals (id, soft_name, soft_code, save_type_logs, path_dir, server_name, databs_name, table_name, user_name, pwd, watching, default_time_watching, active_time_watching) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)]
+[parameters: (None, 'ARM NSI', 'FEF4', 'network drive', '///F/FE/FFFE', None, None, None, None, None, 1, 5, 5)]
+(Background on this error at: https://sqlalche.me/e/20/gkpj)
+2023-03-02 16:24:29,602:app:ERROR:Exception on /general [POST]
+Traceback (most recent call last):
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask_apispec\annotations.py", line 122, in wrapped
+    return wrapper(*args, **kwargs)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask_apispec\wrapper.py", line 29, in __call__
+    response = self.call_view(*args, **kwargs)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask_apispec\wrapper.py", line 52, in call_view
+    return self.func(*args, **kwargs)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\Desktop\project-app\app\server\app.py", line 181, in add_soft
+    return soft.get('id')
+AttributeError: 'General' object has no attribute 'get'
+2023-03-02 16:28:28,564:__main__:WARNING: Add soft on general table action falled with errors: 'NoneType' object has no attribute 'inserted_primary_key'
+2023-03-02 16:29:54,141:__main__:WARNING: Add soft on general table action falled with errors: 'NoneType' object has no attribute 'inserted_primary_key'

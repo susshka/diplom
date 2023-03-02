@@ -59,14 +59,73 @@ export const SoftProvider = ({children}) => {
             }
         )
     }
-    const addNewSoft = (data) => {
+    const addNewSoft = (data, cb) => {
+        var msg = ''
         axios.get("/general/check/"+data.soft_code)
         .then(
             (result) => {
                 console.log(result.data.message)
+                if(result.data.message==="No soft with this code"){
+                    if(data.save_type_logs==="database"){
+                        var db = {soft_name: data.soft_name, soft_code: data.soft_code, 
+                                save_type_logs: data.save_type_logs, 
+                                server_name: data.server_name, databs_name: data.databs_name, 
+                                table_name: data.table_name, user_name: data.user_name, 
+                                pwd: data.pwd, watching: data.watching, 
+                                default_time_watching: data.default_time_watching, 
+                                active_time_watching: data.active_time_watching};
+                        axios.post("/general", db)
+                        .then(
+                            (result) => {
+                                console.log(result)
+                                axios.get("/general/getid/"+data.soft_code)
+                                .then(
+                                    (result) => {
+                                        console.log(result)
+                                        cb("Программное обеспечение добавлено в базу", false)
+                                    },
+                                    (error) =>{
+                                        msg=error.response.data.message
+                                        console.log(error)       
+                                        cb("Программное обеспечение добавлено в general table, но не удалось взять id" + msg, false)
+                                    }
+                                )
+                            },
+                            (error) => {
+                                console.log(error)
+                                msg=error.response.data.message
+                                cb(msg, false)
+                            }
+                        )
+                    }
+                    else{
+                        var nd = {soft_name: data.soft_name, soft_code: data.soft_code, 
+                            save_type_logs: data.save_type_logs, path_dir: data.path_dir, 
+                            watching: data.watching, 
+                            default_time_watching: data.default_time_watching, 
+                            active_time_watching: data.active_time_watching};
+                        axios.post("/general", nd)
+                        .then(
+                            (result) => {
+                                console.log(result)
+                                cb("Программное обеспечение добавлено в базу", false)
+                            },
+                            (error) => {
+                                msg=error.response.data.message
+                                console.log(error)
+                                cb(msg, false)
+                            }
+                        )
+                    }
+                }
+                else{
+                    cb("Программное обеспечение с таким кодом уже существует", false)
+                }
             },
             (error) => {
                 console.log(error)
+                msg=error.response.data.message
+                cb(msg, false)
             }
         )
     }
