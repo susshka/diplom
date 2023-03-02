@@ -16,7 +16,7 @@ export const SoftProvider = ({children}) => {
                 setSoft([])
                 setMsg(result.statusText)
                 setError(null)
-                console.log(result.data)
+               /* console.log(result.data)*/
                 var Items = new Array(result.data.length);
                 for(var i=0; i<result.data.length; i++){
                     var item = {id:result.data[i].id_sf, soft_code: result.data[i].gen_c.soft_code, 
@@ -39,7 +39,7 @@ export const SoftProvider = ({children}) => {
         axios.get("/general/"+sf_code)
         .then(
             (result) => {
-                console.log(result.data[0])
+                /*console.log(result.data[0])*/
                 state(result.data[0])
             },
             (error) => {
@@ -52,7 +52,18 @@ export const SoftProvider = ({children}) => {
         axios.put("/general/"+sf_code)
         .then(
             (result) => {
-                console.log(result)
+                /*console.log(result)*/
+            },
+            (error) => {
+                console.log(error)
+            }
+        )
+    }
+    const addNewSoft = (data) => {
+        axios.get("/general/check/"+data.soft_code)
+        .then(
+            (result) => {
+                console.log(result.data.message)
             },
             (error) => {
                 console.log(error)
@@ -61,7 +72,7 @@ export const SoftProvider = ({children}) => {
     }
 
 
-    const value ={soft, error, msg, setSoftList, getSoftInfo, setDefaultTime}
+    const value ={soft, error, msg, setSoftList, getSoftInfo, setDefaultTime, addNewSoft}
 
     return <SoftContext.Provider value={value}>
         {children}

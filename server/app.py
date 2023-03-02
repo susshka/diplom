@@ -152,6 +152,19 @@ def get_general_soft(soft_code):
         return {'message': str(e)}, 400
     return soft
 
+@app.route('/general/check/<string:soft_code>', methods=['GET'])
+#@jwt_required()
+@marshal_with(GeneralSchema)
+def check_general_soft(soft_code):
+    try:
+        soft = General.query.filter(General.soft_code==soft_code).all()
+        if not soft:
+            return {'message':'No soft with this code'}, 200
+    except Exception as e:
+        logger.warning(f' (Soft code:{soft_code}) general table read action falled with error: {e}')
+        return {'message': str(e)}, 400
+    return {'message':'Soft with this code exist'}, 200
+
 @app.route('/general', methods=['POST'])
 #@jwt_required()
 @use_kwargs(GeneralSchema) #десериализация принимаемых данных по схеме для передачи в модель

@@ -15,7 +15,7 @@ const POInfoFields = ({addedPO, indPO, setAddedPO}) => {
         )
     } 
     else{
-        console.log(addedPO)
+       /* console.log(addedPO)*/
         
 
         return (
