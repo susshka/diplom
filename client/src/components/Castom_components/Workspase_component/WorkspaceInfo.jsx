@@ -1,4 +1,4 @@
-import React, {useState, useMemo } from 'react';
+import React, {useState, useMemo, useEffect} from 'react';
 import NavigationForm from '../NavigationForm_component/NavigationForm';
 import POInfo from '../POInfo_component/POInfo';
 import {useSoft} from '../../hook/useSoft'
@@ -10,12 +10,16 @@ const WorkspaceInfo = ({posts}) => {
  
 const {setSoftList} = useSoft();
 const {soft} = useSoft();
+useEffect(() => {
+    setSoftList();
 
+},[])
 
-const [addedPOs, setAddedPOs]= useState({id:null, title:"", date:null, status:"", errorID:"",errorDIS:""})
+const [addedPOs, setAddedPOs]= useState(null)
+const [indexAddedPO, setIndexAddedPO] = useState(null)
 /*const [addedPOs, setAddedPOs]= useState({id:null, soft_code:"", date:null, status:"", errorID:"",errorDIS:""})*/
 const POinfo = (PO) =>{
-    setAddedPOs({id:PO.id, title:PO.title, date:PO.date, status:PO.status, errorDIS:PO.errorDIS, errorID: PO.errorID});
+    setAddedPOs({soft_name:PO.soft_name});
 }
 
 
@@ -45,10 +49,11 @@ const sortedAndSearchedPOs = useMemo(() => {
 /* что содерждит строка поиска из navigationform */
 
 
+
     return (
         <div className={classes.WorkspaceInfo}>
-            <NavigationForm setAddedPO={POinfo} filter={filter} setFilter={setFilter} posts={sortedAndSearchedPOs} title="Cписок программного обеспечения"/>
-            <POInfo addedPO={addedPOs}/>
+            <NavigationForm setAddedPO={setAddedPOs} setIndex={setIndexAddedPO} filter={filter} setFilter={setFilter} posts={sortedAndSearchedPOs} title="Cписок программного обеспечения"/>
+            <POInfo addedPO={addedPOs} indPO={indexAddedPO} setAddedPO={setAddedPOs}/>
         </div>
     );
 };

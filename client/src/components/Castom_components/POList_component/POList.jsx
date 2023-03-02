@@ -3,7 +3,7 @@ import POHeader from './POHeader_component/POHeader';
 import POItem from './POItem_component/POItem';
 import classes from './POList.module.css';
 
-const POList = ({posts,setAddedPO}) => {
+const POList = ({posts,setAddedPO, setIndex}) => {
     const titlesHeader= [{title:"ID ПО"},
                          {title:"Название ПО"},
                          {title:"Код ПО"},
@@ -19,7 +19,7 @@ const POList = ({posts,setAddedPO}) => {
         <div className={classes.POList}>
             <POHeader titles={titlesHeader}/>
             {posts.map((postIter, index) =>
-                <POItem number={index+1} post={postIter} key={postIter.id} setAddedPO={setAddedPO}/>
+                <POItem number={index} post={postIter} key={postIter.id} setAddedPO={setAddedPO} setIndex={setIndex}/>
             )}   
         </div>
     );

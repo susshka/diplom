@@ -109,3 +109,70 @@ AttributeError: 'list' object has no attribute 'sf_code'
 2023-02-28 13:43:03,507:__main__:WARNING: GeneralTable-read action falled with errors: One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'Mapper[General(generals)]'. Original exception was: Could not determine join condition between parent/child tables on relationship General.stC - there are multiple foreign key paths linking the tables.  Specify the 'foreign_keys' argument, providing a list of those columns which should be counted as containing a foreign key reference to the parent table.
 2023-02-28 13:43:03,747:__main__:WARNING: GeneralTable-read action falled with errors: One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'Mapper[General(generals)]'. Original exception was: Could not determine join condition between parent/child tables on relationship General.stC - there are multiple foreign key paths linking the tables.  Specify the 'foreign_keys' argument, providing a list of those columns which should be counted as containing a foreign key reference to the parent table.
 2023-02-28 13:43:08,368:__main__:WARNING: Soft errors table read action falled with errors: One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'Mapper[General(generals)]'. Original exception was: Could not determine join condition between parent/child tables on relationship General.stC - there are multiple foreign key paths linking the tables.  Specify the 'foreign_keys' argument, providing a list of those columns which should be counted as containing a foreign key reference to the parent table.
+2023-03-01 08:28:03,533:__main__:WARNING: (Soft code:serviceFile_1) general table read action falled with error: type object 'General' has no attribute 'sf_code'
+2023-03-01 08:32:53,751:__main__:WARNING: (Soft code:serviceFile_1) general table read action falled with error: type object 'General' has no attribute 'sf_code'
+2023-03-01 08:35:14,745:__main__:WARNING: (Soft code:serviceFile_1) general table read action falled with error: type object 'General' has no attribute 'sf_code'
+2023-03-01 08:45:29,633:__main__:WARNING: Login action falled with errors: No user with this password
+2023-03-01 15:32:59,724:app:ERROR:Exception on /general/serviceFile_1 [GET]
+Traceback (most recent call last):
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask_apispec\annotations.py", line 122, in wrapped
+    return wrapper(*args, **kwargs)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask_apispec\wrapper.py", line 33, in __call__
+    mv = self.marshal_result(rv, status_code)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask_apispec\wrapper.py", line 62, in marshal_result
+    dumped = schema.dump(result)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\marshmallow\schema.py", line 557, in dump
+    result = self._serialize(processed_obj, many=many)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\marshmallow\schema.py", line 519, in _serialize
+    return [
+TypeError: 'General' object is not iterable
+2023-03-01 15:32:59,988:app:ERROR:Exception on /general/serviceFile_1 [GET]
+Traceback (most recent call last):
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask_apispec\annotations.py", line 122, in wrapped
+    return wrapper(*args, **kwargs)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask_apispec\wrapper.py", line 33, in __call__
+    mv = self.marshal_result(rv, status_code)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask_apispec\wrapper.py", line 62, in marshal_result
+    dumped = schema.dump(result)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\marshmallow\schema.py", line 557, in dump
+    result = self._serialize(processed_obj, many=many)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\marshmallow\schema.py", line 519, in _serialize
+    return [
+TypeError: 'General' object is not iterable
+2023-03-01 15:33:55,980:app:ERROR:Exception on /general/serviceFile_1 [GET]
+Traceback (most recent call last):
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask_apispec\annotations.py", line 122, in wrapped
+    return wrapper(*args, **kwargs)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask_apispec\wrapper.py", line 33, in __call__
+    mv = self.marshal_result(rv, status_code)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask_apispec\wrapper.py", line 62, in marshal_result
+    dumped = schema.dump(result)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\marshmallow\schema.py", line 557, in dump
+    result = self._serialize(processed_obj, many=many)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\marshmallow\schema.py", line 519, in _serialize
+    return [
+TypeError: 'General' object is not iterable

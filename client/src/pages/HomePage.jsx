@@ -36,7 +36,6 @@ const HomePage = (props) => {
                 setError(error);
             }
         )
-           setSoftList();
      },[])
     
 

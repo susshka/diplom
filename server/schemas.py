@@ -11,6 +11,7 @@ class AuthSchema(Schema):
     message = fields.String(dump_only=True)
     
 class GeneralSchema(Schema):
+    id = fields.Integer(dump_only=True)
     soft_name = fields.String(required=True, validate=[validate.Length(max=100)])
     soft_code = fields.String(required=True, validate=[validate.Length(max=100)])
     save_type_logs = fields.String(required=True, validate=[validate.Length(max=50)])
@@ -21,7 +22,8 @@ class GeneralSchema(Schema):
     user_name = fields.String(required=True, validate=[validate.Length(max=100)])
     pwd = fields.String(required=True, validate=[validate.Length(max=100)])
     watching = fields.Boolean(required=True)
-    time_watching = fields.Integer(required=True)
+    default_time_watching = fields.Integer(required=True)
+    active_time_watching = fields.Integer(required=True)
     message = fields.String(dump_only=True)
     
 class ErrorSchema(Schema):
@@ -33,7 +35,7 @@ class ErrorSchema(Schema):
     message = fields.String(dump_only=True)
     
 class ShowTableSchema(Schema):
-    id = fields.Integer(dump_only=True)
+    id_sf = fields.Integer(dump_only=True)
     last_upd_date = fields.DateTime()
     last_log_hash = fields.String(validate=[validate.Length(max=200)])
     last_log_id = fields.String(validate=[validate.Length(max=100)])

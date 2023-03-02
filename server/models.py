@@ -32,6 +32,7 @@ class User(Base):
     
 class General(Base):
     __tablename__= 'generals'
+    id =db.Column(db.Integer, autoincrement=True, unique=True)
     soft_name = db.Column(db.String(100), primary_key=True, unique=True)
     soft_code = db.Column(db.String(100), primary_key=True, unique=True)
     save_type_logs = db.Column(db.String(50), nullable=False)
@@ -42,11 +43,14 @@ class General(Base):
     user_name = db.Column(db.String(100))
     pwd = db.Column(db.String(100))
     watching = db.Column(db.Boolean,  nullable=False, default=True)
-    time_watching= db.Column(db.Integer,  nullable=False, default=1)
+    default_time_watching= db.Column(db.Integer,  nullable=False, default=1)
+    active_time_watching= db.Column(db.Integer,  nullable=False, default=1)
     er = relationship('Error', back_populates="gen")
     stC = relationship('ShowTable', back_populates="gen_c")
 
-    
+    def set_default_time(self):
+        self.active_time_watching=self.default_time_watching
+        
     
 class Error(Base):
     __tablename__='errors'
@@ -61,7 +65,7 @@ class Error(Base):
     
 class ShowTable(Base):
     __tablename__='show_table'
-    id = db.Column(db.Integer, primary_key=True)
+    id_sf =db.Column(db.Integer, primary_key=True)
     sf_name = db.Column(db.String(100)) 
     sf_code = db.Column(db.String(100))
     last_upd_date = db.Column(db.DateTime)

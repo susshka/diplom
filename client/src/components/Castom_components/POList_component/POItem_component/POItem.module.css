@@ -1,13 +1,22 @@
 .po_content{
+    height: fit-content;
     max-height: 650px;
     justify-content: space-around;
     align-items: center;
     display: flex;
+    width: 100%;
     padding: 15px;
     border: 2px solid rgb(65,88,208);
     margin-top: 15px;   
 }
 .po_description{
     display: inline-block;
-    justify-content: space-around;
+    justify-content: space-evenly;
+}
+.title{
+    width: 16%;
+    max-width: 100px;
+    
+    
+    
 }

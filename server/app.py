@@ -144,7 +144,7 @@ def get_general():
 @marshal_with(GeneralSchema(many=True))
 def get_general_soft(soft_code):
     try:
-        soft = General.query.filter(General.sf_code==soft_code).all()
+        soft = General.query.filter(General.soft_code==soft_code).all()
         if not soft:
             return {'message':'No soft with this code'}, 200
     except Exception as e:
@@ -166,6 +166,28 @@ def add_soft(**kwargs): #принимает аргументы
         logger.warning(f' Add soft on general table action falled with errors: {e}')
         return {'message': str(e)}, 400
     return soft
+
+
+@app.route('/general/<string:soft_code>', methods=['PUT'])
+#@jwt_required()
+@use_kwargs(GeneralSchema(partial=True))
+@marshal_with(GeneralSchema)
+def set_def_time(soft_code):
+    try:
+        soft = General.query.filter(General.soft_code==soft_code).first()
+        if not soft:
+            return {'message':'No soft with this code (in route)'}, 400
+        soft.active_time_watching = soft.default_time_watching
+        '''
+        for key, value in kwargs.items():
+            setattr(soft, key, value)
+        '''
+    except Exception as e:
+        logger.warning(f' (Soft code:{soft_code}) active time set action falled with error: {e}')
+        return {'message': f'{str(e)} (in route)'}, 400
+    session.commit()
+    return {'message': f'Active time in {soft_code} soft set on default value'}
+
 
 
 @app.route('/show_table', methods=['GET'])
