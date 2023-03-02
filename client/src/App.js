@@ -11,6 +11,7 @@ import HomePage from "./pages/HomePage";
 import RegisterPage from "./pages/RegisterPage";
 import { useAuth } from "./components/hook/useAuth";
 import {SoftProvider} from './components/hoc/SoftProvider'
+import AddingSoftPage from "./pages/AddingSoftPage";
 function App() {
 
   var Dates = new Array(4);
@@ -78,6 +79,11 @@ const [userTitle, setUserTitle]=useState("Авторизуйтесь")
             <Route path="soft_info" element={
               <RequireAuth>
                 <WorkspaceInfo posts={posts}/>
+              </RequireAuth>
+            }/>
+            <Route path="add_soft" element={
+              <RequireAuth>
+                <AddingSoftPage/>
               </RequireAuth>
             }/>
             <Route path="logs_list" element={
