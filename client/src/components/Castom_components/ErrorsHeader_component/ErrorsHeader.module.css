@@ -1,0 +1,16 @@
+.ErrorsHeader{
+    display: flex;
+    justify-content:space-around;
+    width: 100%;
+    padding: 17px;
+    /*margin-left: 15px;*/
+}
+.title{
+    width: 24%;        
+}
+.title_code{
+    width: 8%
+}
+.title_coef{
+    width: 8%
+}

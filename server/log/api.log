@@ -215,3 +215,47 @@ Traceback (most recent call last):
 AttributeError: 'General' object has no attribute 'get'
 2023-03-02 16:28:28,564:__main__:WARNING: Add soft on general table action falled with errors: 'NoneType' object has no attribute 'inserted_primary_key'
 2023-03-02 16:29:54,141:__main__:WARNING: Add soft on general table action falled with errors: 'NoneType' object has no attribute 'inserted_primary_key'
+2023-03-03 08:44:53,594:__main__:WARNING: Add soft on general table action falled with errors: __init__() got an unexpected keyword argument 'sf_code'
+2023-03-03 08:46:40,390:__main__:WARNING: Add soft on general table action falled with errors: __init__() got an unexpected keyword argument 'sf_name'
+2023-03-03 09:04:43,722:__main__:WARNING: Add soft on general table action falled with errors: __init__() got an unexpected keyword argument 'gen_c'
+2023-03-03 09:54:51,628:__main__:WARNING: User:Lola - read action falled with errors: Could not determine join condition between parent/child tables on relationship Error.stb - there are no foreign keys linking these tables.  Ensure that referencing columns are associated with a ForeignKey or ForeignKeyConstraint, or specify a 'primaryjoin' expression.
+2023-03-03 09:55:03,130:__main__:WARNING: User:Lola - read action falled with errors: One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'Mapper[Error(errors)]'. Original exception was: Could not determine join condition between parent/child tables on relationship Error.stb - there are no foreign keys linking these tables.  Ensure that referencing columns are associated with a ForeignKey or ForeignKeyConstraint, or specify a 'primaryjoin' expression.
+2023-03-03 09:55:23,732:__main__:WARNING: User:Lola - read action falled with errors: One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'Mapper[Error(errors)]'. Original exception was: Could not determine join condition between parent/child tables on relationship Error.stb - there are no foreign keys linking these tables.  Ensure that referencing columns are associated with a ForeignKey or ForeignKeyConstraint, or specify a 'primaryjoin' expression.
+2023-03-03 10:00:21,813:__main__:WARNING: User:Lola - read action falled with errors: Could not determine join condition between parent/child tables on relationship Error.stb - there are no foreign keys linking these tables.  Ensure that referencing columns are associated with a ForeignKey or ForeignKeyConstraint, or specify a 'primaryjoin' expression.
+2023-03-03 10:01:10,123:__main__:WARNING: User:Lola - read action falled with errors: One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'Mapper[Error(errors)]'. Original exception was: Could not determine join condition between parent/child tables on relationship Error.stb - there are no foreign keys linking these tables.  Ensure that referencing columns are associated with a ForeignKey or ForeignKeyConstraint, or specify a 'primaryjoin' expression.
+2023-03-03 10:07:44,067:__main__:WARNING: User:Lola - read action falled with errors: One or more mappers failed to initialize - can't proceed with initialization of other mappers. Triggering mapper: 'Mapper[Error(errors)]'. Original exception was: Could not determine join condition between parent/child tables on relationship Error.stb - there are no foreign keys linking these tables.  Ensure that referencing columns are associated with a ForeignKey or ForeignKeyConstraint, or specify a 'primaryjoin' expression.
+2023-03-03 10:08:33,578:__main__:WARNING: User:Lola - read action falled with errors: Could not determine join condition between parent/child tables on relationship Error.stb - there are no foreign keys linking these tables.  Ensure that referencing columns are associated with a ForeignKey or ForeignKeyConstraint, or specify a 'primaryjoin' expression.
+2023-03-03 10:46:30,224:__main__:WARNING: Add soft on general table action falled with errors: __init__() got an unexpected keyword argument 'id_sf_gen'
+2023-03-03 10:52:20,439:__main__:WARNING: Add soft on general table action falled with errors: __init__() got an unexpected keyword argument 'id_sf_gen'
+2023-03-03 10:56:43,805:__main__:WARNING: Add soft on general table action falled with errors: 'NoneType' object has no attribute 'id'
+2023-03-03 11:23:28,048:app:ERROR:Exception on /show_table [POST]
+Traceback (most recent call last):
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask_apispec\annotations.py", line 122, in wrapped
+    return wrapper(*args, **kwargs)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask_apispec\wrapper.py", line 33, in __call__
+    mv = self.marshal_result(rv, status_code)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask_apispec\wrapper.py", line 67, in marshal_result
+    return format_response(output)  # type: Response
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\json\__init__.py", line 342, in jsonify
+    return current_app.json.response(*args, **kwargs)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\json\provider.py", line 309, in response
+    f"{self.dumps(obj, **dump_args)}\n", mimetype=mimetype
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\json\provider.py", line 230, in dumps
+    return json.dumps(obj, **kwargs)
+  File "c:\users\dunajkin-d-m.zvezda\appdata\local\programs\python\python39\lib\json\__init__.py", line 234, in dumps
+    return cls(
+  File "c:\users\dunajkin-d-m.zvezda\appdata\local\programs\python\python39\lib\json\encoder.py", line 199, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+  File "c:\users\dunajkin-d-m.zvezda\appdata\local\programs\python\python39\lib\json\encoder.py", line 257, in iterencode
+    return _iterencode(o, 0)
+  File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\json\provider.py", line 122, in _default
+    raise TypeError(f"Object of type {type(o).__name__} is not JSON serializable")
+TypeError: Object of type ShowTable is not JSON serializable

@@ -181,7 +181,7 @@ def check_general_soft(soft_code):
 #@jwt_required()
 @use_kwargs(GeneralSchema) #десериализация принимаемых данных по схеме для передачи в модель
 @marshal_with(GeneralSchema) #сериализация данных по схеме для отображения 
-def add_soft(**kwargs): #принимает аргументы
+def add_soft_gen(**kwargs): #принимает аргументы
     #params = request.json #для получения параметров без сериализации
     try:
         soft = General(**kwargs) #параметры, провренные по схеме, передаются в модель
@@ -226,6 +226,20 @@ def get_show_table():
          return {'message': str(e)}, 400
     return shtable
 
+@app.route('/show_table', methods=['POST'])
+#@jwt_required()
+@use_kwargs(ShowTableSchema) #десериализация принимаемых данных по схеме для передачи в модель
+@marshal_with(ShowTableSchema) #сериализация данных по схеме для отображения 
+def add_soft_sh(**kwargs): #принимает аргументы
+    #params = request.json #для получения параметров без сериализации
+    try:
+        st = ShowTable(**kwargs) #параметры, провренные по схеме, передаются в модель
+        session.add(st) 
+        session.commit()
+    except Exception as e:
+        logger.warning(f' Add soft on general table action falled with errors: {e}')
+        return {'message': str(e)}, 400
+    return st
 
 '''
 @app.route('/users', methods=['POST'])

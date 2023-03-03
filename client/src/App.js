@@ -12,6 +12,7 @@ import RegisterPage from "./pages/RegisterPage";
 import { useAuth } from "./components/hook/useAuth";
 import {SoftProvider} from './components/hoc/SoftProvider'
 import AddingSoftPage from "./pages/AddingSoftPage";
+import WorkspaseErrors from "./components/Castom_components/Workspase_component/WorkspaseErrors";
 function App() {
 
   var Dates = new Array(4);
@@ -84,6 +85,11 @@ const [userTitle, setUserTitle]=useState("Авторизуйтесь")
             <Route path="add_soft" element={
               <RequireAuth>
                 <AddingSoftPage/>
+              </RequireAuth>
+            }/>
+            <Route path="errors" element={
+              <RequireAuth>
+                <WorkspaseErrors/>
               </RequireAuth>
             }/>
             <Route path="logs_list" element={

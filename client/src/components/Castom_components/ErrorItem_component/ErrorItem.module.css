@@ -1,0 +1,17 @@
+.ErrorItem{
+    justify-content: space-around;
+    align-items: center;
+    display: flex;
+    padding: 15px;
+    border: 2px solid rgb(65,88,208);
+    margin-top: 15px;   
+}
+.title{
+    width: 24%;        
+}
+.title_code{
+    width: 8%
+}
+.title_coef{
+    width: 8%
+}

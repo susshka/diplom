@@ -27,18 +27,23 @@ class GeneralSchema(Schema):
     message = fields.String(dump_only=True)
     
 class ErrorSchema(Schema):
-    err_code = fields.String(required=True, validate=[validate.Length(max=100)])
+    id_er = fields.Integer(dump_only=True)
+    err_code = fields.Integer(required=True)
     err_descr = fields.String(required=True, validate=[validate.Length(max=200)])
     err_status = fields.String(required=True, validate=[validate.Length(max=100)])
     coef_status = fields.Float(required=True)
+    sf_code = fields.String(required=True, validate=[validate.Length(max=100)])
     gen = fields.Nested(GeneralSchema(only=('soft_code',)))
     message = fields.String(dump_only=True)
     
 class ShowTableSchema(Schema):
     id_sf = fields.Integer(dump_only=True)
+    id_sf_gen = fields.Integer(required=True)
+    sf_name = fields.String(required=True, validate=[validate.Length(max=200)])
+    sf_code = fields.String(required=True, validate=[validate.Length(max=200)])
     last_upd_date = fields.DateTime()
     last_log_hash = fields.String(validate=[validate.Length(max=200)])
     last_log_id = fields.String(validate=[validate.Length(max=100)])
-    er = fields.Nested(ErrorSchema(only=('err_code',)))
-    gen_c = fields.Nested(GeneralSchema(only=('soft_name','soft_code',)))
+    err_cd = fields.Integer()
+    gen_c = fields.Nested(GeneralSchema(only=('id','soft_name','soft_code',)))
     message = fields.String(dump_only=True)

@@ -1,14 +1,12 @@
-import React, {useState, useMemo, useEffect} from 'react';
+import React,{useState, useMemo, useEffect} from 'react';
+import classes from './WorkspaseErrors.module.css'
 import NavigationForm from '../NavigationForm_component/NavigationForm';
-import POInfo from '../POInfo_component/POInfo';
 import {useSoft} from '../../hook/useSoft'
 import {useLocation} from 'react-router-dom';
-/*import POAdderForm from '../POAdderForm_component/POAdderForm';*/
+import ErrorsForm from '../ErrorsForm_component/ErrorsForm';
 
-import classes from './WorkspaseInfo.module.css';
+const WorkspaseErrors = () => {
 
-const WorkspaceInfo = ({posts}) => {
- 
 const {setSoftList} = useSoft();
 const {soft} = useSoft();
 const location = useLocation().pathname;
@@ -16,14 +14,8 @@ useEffect(() => {
     setSoftList();
 },[])
 
-
-const [addedPOs, setAddedPOs]= useState(null)
+const [addedPOErr, setAddedPOErr]= useState(null)
 const [indexAddedPO, setIndexAddedPO] = useState(null)
-/*const [addedPOs, setAddedPOs]= useState({id:null, soft_code:"", date:null, status:"", errorID:"",errorDIS:""})*/
-const POinfo = (PO) =>{
-    setAddedPOs({soft_name:PO.soft_name});
-}
-
 
 const [filter, setFilter] = useState({sort:"", query:""})
 /*В value Select'a передается переменная filter из Workspase'a, у которой есть обработчик событий */
@@ -47,17 +39,14 @@ const sortedPOs = useMemo(() => {
 
 const sortedAndSearchedPOs = useMemo(() => {
     return sortedPOs.filter(PO => PO.soft_name.toLowerCase().includes(filter.query.toLowerCase()))
-},[filter.query, sortedPOs]) /*sortedAndSearchedPOs - переменная составляется и кешируется из отсортированного списка с фильтром, чтобы элементы этого списка содержали в названии то, */
-/* что содерждит строка поиска из navigationform */
-
-
+},[filter.query, sortedPOs])
 
     return (
-        <div className={classes.WorkspaceInfo}>
-            <NavigationForm setAddedPO={setAddedPOs} location={location} setIndex={setIndexAddedPO} filter={filter} setFilter={setFilter} posts={sortedAndSearchedPOs} title="Cписок программного обеспечения"/>
-            <POInfo addedPO={addedPOs} indPO={indexAddedPO} setAddedPO={setAddedPOs}/>
+        <div className={classes.WorkspaceErrors}>
+            <NavigationForm setAddedPO={setAddedPOErr} location={location} setIndex={setIndexAddedPO} filter={filter} setFilter={setFilter} posts={sortedAndSearchedPOs} title="Cписок программного обеспечения"/>
+            <ErrorsForm addedPO={addedPOErr} indPO={indexAddedPO} setAddedPO={setAddedPOErr}/>
         </div>
     );
 };
 
-export default WorkspaceInfo;
+export default WorkspaseErrors;

@@ -56,8 +56,8 @@ class General(Base):
     
 class Error(Base):
     __tablename__='errors'
-    err_code = db.Column(db.String(100), primary_key=True, unique=True)
-    stb = relationship('ShowTable', back_populates="er")
+    id_er = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    err_code = db.Column(db.Integer)
     err_descr = db.Column(db.String(200))
     err_status = db.Column(db.String(100))
     coef_status = db.Column(db.Float, nullable=False)
@@ -67,21 +67,19 @@ class Error(Base):
     
 class ShowTable(Base):
     __tablename__='show_table'
-    id_sf =db.Column(db.Integer, primary_key=True)
+    id_sf =db.Column(db.Integer, primary_key=True, autoincrement=True)
     id_sf_gen = db.Column(db.Integer)
     sf_name = db.Column(db.String(100)) 
     sf_code = db.Column(db.String(100))
     last_upd_date = db.Column(db.DateTime)
     last_log_hash = db.Column(db.String(200))
     last_log_id = db.Column(db.String(100))
-    err_cd = db.Column(db.String(100), db.ForeignKey('errors.err_code'))
-    er = relationship('Error',  back_populates="stb")
+    err_cd = db.Column(db.Integer)
     gen_c = relationship(
         "General",
         foreign_keys="[ShowTable.sf_name, ShowTable.sf_code, ShowTable.id_sf_gen]",
         back_populates="stC",
     )
     __table_args__ = (db.ForeignKeyConstraint([id_sf_gen, sf_name, sf_code],[General.id, General.soft_name, General.soft_code], onupdate="CASCADE", ondelete="SET NULL"),)
-    
-    
+   
    

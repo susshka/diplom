@@ -3,8 +3,7 @@ import FilterPOs from '../FilterPOs_component/FilterPOs';
 import POList from '../POList_component/POList';
 import classes from './NavigationForm.module.css'
 
-const NavigationForm = ({posts, title, filter, setFilter, setAddedPO, setIndex}) => {
-
+const NavigationForm = ({posts, title, filter, setFilter, setAddedPO, setIndex, location}) => {
    
     return (
         <div className={classes.NavigationForm}>
@@ -12,7 +11,7 @@ const NavigationForm = ({posts, title, filter, setFilter, setAddedPO, setIndex})
             <hr style={{margin:'15px 0'}}/>
             <FilterPOs filter={filter} setFilter={setFilter}/>
             <hr style={{margin:'15px 0'}}/>
-            <POList posts={posts} setAddedPO={setAddedPO} setIndex={setIndex}/>
+            <POList posts={posts} setAddedPO={setAddedPO} setIndex={setIndex} location={location}/>
                 
         </div>
     );
