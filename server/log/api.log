@@ -259,3 +259,9 @@ Traceback (most recent call last):
   File "C:\Users\Dunajkin-D-M.ZVEZDA\.virtualenvs\server-eSlfTvgE\lib\site-packages\flask\json\provider.py", line 122, in _default
     raise TypeError(f"Object of type {type(o).__name__} is not JSON serializable")
 TypeError: Object of type ShowTable is not JSON serializable
+2023-03-06 13:01:31,970:__main__:WARNING: User:Lola - read action falled with errors: (pyodbc.OperationalError) ('08S01', '[08S01] [Microsoft][ODBC Driver 17 for SQL Server]Поставщик TCP: Программа на вашем хост-компьютере разорвала установленное подключение.\r\n (10053) (SQLExecDirectW); [08S01] [Microsoft][ODBC Driver 17 for SQL Server]Ошибка связи (10053)')
+[SQL: SELECT TOP 1 users.id AS users_id, users.login AS users_login, users.password AS users_password 
+FROM users 
+WHERE users.login = ?]
+[parameters: ('Lola',)]
+(Background on this error at: https://sqlalche.me/e/20/e3q8)

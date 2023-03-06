@@ -9,7 +9,7 @@ const ErrorsForm = ({addedPO, indPO, setAddedPO}) => {
         <div className={classes.ErrorsForm}>
             <div className={classes.title}>
                 <h1 style={{textAlign:'left', fontSize:30}}>Список кодов ошибок</h1>
-                <LinkButton to="/register">Добавить</LinkButton>
+                <LinkButton to="/add_error">Добавить</LinkButton>
             </div>
             <hr style={{margin:'15px 0'}}/>
             <ErrorsList addedPO={addedPO} indPO={indPO} setAddedPO={setAddedPO}/>

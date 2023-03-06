@@ -13,6 +13,7 @@ import { useAuth } from "./components/hook/useAuth";
 import {SoftProvider} from './components/hoc/SoftProvider'
 import AddingSoftPage from "./pages/AddingSoftPage";
 import WorkspaseErrors from "./components/Castom_components/Workspase_component/WorkspaseErrors";
+import AddingErrorPage from "./pages/AddingErrorPage";
 function App() {
 
   var Dates = new Array(4);
@@ -90,6 +91,11 @@ const [userTitle, setUserTitle]=useState("Авторизуйтесь")
             <Route path="errors" element={
               <RequireAuth>
                 <WorkspaseErrors/>
+              </RequireAuth>
+            }/>
+            <Route path="add_error" element={
+              <RequireAuth>
+                <AddingErrorPage/>
               </RequireAuth>
             }/>
             <Route path="logs_list" element={

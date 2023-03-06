@@ -35,7 +35,6 @@ const Layout = ({logging, userTitle}) => {
                 <div className="links">
                     <NavLink to="/" className="link">HomePage</NavLink>
                     <NavLink to="/soft_info" className="link">Состояние ПО</NavLink>
-                    <NavLink to="/add_soft" className="link">Добавить ПО</NavLink>
                     <NavLink to="/errors" className="link">Ошибки ПО</NavLink>
                     <NavLink to="/logs_list" className="link">Log-файлы</NavLink>
                 </div>
