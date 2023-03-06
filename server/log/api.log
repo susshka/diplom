@@ -266,3 +266,6 @@ WHERE users.login = ?]
 [parameters: ('Lola',)]
 (Background on this error at: https://sqlalche.me/e/20/e3q8)
 2023-03-06 14:00:01,437:__main__:WARNING: Login action falled with errors: No user with this password
+2023-03-06 16:43:41,216:__main__:WARNING: Table read action falled with errors: Table() takes at least two positional-only arguments 'name' and 'metadata'
+2023-03-06 16:46:40,119:__main__:WARNING: Table read action falled with errors: Column expression, FROM clause, or other columns clause element expected, got [Column('sf_name', String(length=100), ForeignKey('generals.soft_name'), table=<show_table>), Column('sf_code', String(length=100), ForeignKey('generals.soft_code'), table=<show_table>)]. Did you mean to say select(Column('sf_name', String(length=100), ForeignKey('generals.soft_name'), table=<show_table>), Column('sf_code', String(length=100), ForeignKey('generals.soft_code'), table=<show_table>))?
+2023-03-06 16:51:06,975:__main__:WARNING: Table read action falled with errors: Additional arguments should be named <dialectname>_<argument>, got 'autoload'

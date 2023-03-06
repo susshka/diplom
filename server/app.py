@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request
 import sqlalchemy as db
 from sqlalchemy.orm import sessionmaker, scoped_session,declarative_base
-from sqlalchemy import create_engine, engine
+from sqlalchemy import create_engine, engine  
 #sfrom sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.engine import URL
 from flask_jwt_extended import JWTManager, jwt_required #required ставится под роутом, чтобы к нему был доступ только при авторизованности (при вызове запроса в параметр heders передается токен)
@@ -12,7 +12,7 @@ from flask_apispec.extension import FlaskApiSpec
 from schemas import UserSchema, AuthSchema, GeneralSchema, ErrorSchema, ShowTableSchema
 from flask_apispec import use_kwargs, marshal_with
 import logging
-from sqlalchemy import and_, or_, not_
+from sqlalchemy import and_, or_, not_, select, MetaData, Table
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -101,6 +101,27 @@ def check_table(tablename):
          logger.warning(f' Soft errors table read action falled with errors: {e}')
          return {'message': str(e)}, 400
     return {'message':'This table exist'}, 200
+    
+@app.route('/table_log/<string:tablename>', methods=['GET'])
+def get_logs(tablename):
+    try:
+        table = Table(
+            tablename,
+            Base.metadata,
+            autoload=True, 
+            autoload_with=engine
+        )
+        
+        stmt = select([
+            table.columns.id_log,
+            table.columns.err_code
+        ])
+        connection = engine.connect()
+        results = connection.execute(stmt).fetchall()     
+    except Exception as e:
+         logger.warning(f' Table read action falled with errors: {e}')
+         return {'message': str(e)}, 400
+    return {'message':'Yep!', 'dt': results}, 200   
         
 
 @app.route('/errors', methods=['GET'])

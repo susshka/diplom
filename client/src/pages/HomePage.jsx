@@ -16,7 +16,7 @@ const HomePage = (props) => {
 
     const {user} = useAuth();
     const {setSoftList} = useSoft();
-    const {checkTable} = useSoft();
+    const {getTable} = useSoft();
 
     var header ={}
 
@@ -46,7 +46,7 @@ const HomePage = (props) => {
     
     const hendlerSubmit = (event) =>{
         event.preventDefault();
-        checkTable(table.tbl)
+        getTable(table.tbl)
         setTable({tbl: ''})
     }
 
