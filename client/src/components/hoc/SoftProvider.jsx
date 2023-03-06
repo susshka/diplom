@@ -35,7 +35,7 @@ export const SoftProvider = ({children}) => {
         )
     }
 
-    const getSoftInfo = (sf_code, state, ind) => {
+    const getSoftInfo = (sf_code, state) => {
         axios.get("/general/"+sf_code)
         .then(
             (result) => {
@@ -47,15 +47,26 @@ export const SoftProvider = ({children}) => {
             }
         )
     }
-    const getSoftErrorsInfo = (sf_code, state, ind) => {
+    const getSoftErrorsInfo = (sf_code, state) => {
         axios.get("/errors/"+sf_code)
         .then(
             (result) => {
                 console.log(result)
-                state(result.data)
+                if(result.data.length===1){
+                    if(JSON.stringify(result.data[0])==='{}'){
+                        state({message:'No errors', data:result.data, soft:sf_code})
+                    }
+                    else{
+                        state({message:'Errors found', data:result.data, soft:sf_code})
+                    }
+                }
+                else{
+                    state({message:'Errors found', data:result.data, soft:sf_code})
+                }
             },
             (error) => {
                 console.log(error)
+                state({message:'Error of serching soft-errors', data:error.response.data.message, soft:sf_code})
             }
         )
     }

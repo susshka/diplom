@@ -17,6 +17,11 @@ useEffect(() => {
 const [addedPOErr, setAddedPOErr]= useState(null)
 const [indexAddedPO, setIndexAddedPO] = useState(null)
 
+const addedSoftErrors = useMemo(() => {
+    console.log("отработал хук useMemo для ошибок")
+    return addedPOErr;
+}, [addedPOErr])
+
 const [filter, setFilter] = useState({sort:"", query:""})
 /*В value Select'a передается переменная filter из Workspase'a, у которой есть обработчик событий */
  /*filter.sort - выбранный вид сортировки, по какому из полей массива posts, выбирается в navigationform в select'e*/
@@ -44,7 +49,7 @@ const sortedAndSearchedPOs = useMemo(() => {
     return (
         <div className={classes.WorkspaceErrors}>
             <NavigationForm setAddedPO={setAddedPOErr} location={location} setIndex={setIndexAddedPO} filter={filter} setFilter={setFilter} posts={sortedAndSearchedPOs} title="Cписок программного обеспечения"/>
-            <ErrorsForm addedPO={addedPOErr} indPO={indexAddedPO} setAddedPO={setAddedPOErr}/>
+            <ErrorsForm addedPO={addedSoftErrors} indPO={indexAddedPO} setAddedPO={setAddedPOErr}/>
         </div>
     );
 };
