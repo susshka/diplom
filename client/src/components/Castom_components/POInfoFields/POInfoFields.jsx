@@ -51,7 +51,7 @@ const POInfoFields = ({addedPO, indPO, setAddedPO}) => {
                 <div className='fields'>
                     <strong className='infoTitle'>Текущее время отслеживания: </strong>
                     <p className='infoDiscr'>{addedPO.active_time_watching}</p>
-                    <Button onClick={() => {
+                    <Button style={{marginLeft:'0'}} onClick={() => {
                         setDefaultTime(addedPO.soft_code)
                         getSoftInfo(addedPO.soft_code, setAddedPO)
                     }}>Привести к дефолтному</Button>

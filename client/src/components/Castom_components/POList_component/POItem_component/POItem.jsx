@@ -16,11 +16,11 @@ const POItem = (props) => {
     <div className={classes.POItem}>
         <div className={classes.po_content}>
 
-            <strong className={classes.title}>{props.post.id}</strong>
+            <strong className={classes.title_code}>{props.post.id}</strong>
             <strong className={classes.title}>{props.post.soft_name}</strong>
             <strong className={classes.title}>{props.post.soft_code}</strong>
             <p className={classes.title}>{date}</p>
-            <strong className={classes.title}>{ec}</strong>
+            <strong className={classes.title_code}>{ec}</strong>
           <div className={classes.title}>
             <Button onClick={() => {
               /*props.setAddedPO(props.post)*/

@@ -1,14 +1,16 @@
 .POHeader{
     display: flex;
-    justify-content:space-around;
+    justify-content:space-between;
     width: 100%;
     padding: 17px;
     /*margin-left: 15px;*/
 }
+.title_code{
+    width: 8%;
+}
 .title{
-   
+    width: 16%;   
+}
+.title_btn{
     width: 16%;
-    max-width: 100%;
-    
-    margin-right: 15px; 
 }

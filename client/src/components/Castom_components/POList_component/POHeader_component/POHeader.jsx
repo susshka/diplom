@@ -7,10 +7,12 @@ const POHeader = ({titles, ...props}) => {
     const {setSoftList} = useSoft();
     return (
         <div className={classes.POHeader} {...props}>
-            {titles.map((titlesIter) =>
-                <strong className={classes.title} key={titlesIter.title}>{titlesIter.title}</strong>
-            )}
-            <div className={classes.title}>
+            <strong className={classes.title_code}>ID ПО</strong>
+            <strong className={classes.title}>Название ПО</strong>
+            <strong className={classes.title}>Код ПО</strong>
+            <strong className={classes.title}>Последнее обновление</strong>
+            <strong className={classes.title_code}>Статус</strong>
+            <div className={classes.title_btn}>
                 <Button onClick={() => {
                   setSoftList()
                 }

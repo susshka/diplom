@@ -1,7 +1,7 @@
 .po_content{
     height: fit-content;
     max-height: 650px;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     display: flex;
     width: 100%;
@@ -13,7 +13,11 @@
     display: inline-block;
     justify-content: space-evenly;
 }
+.title_code{
+    width: 8%;
+    min-width: 8%; 
+}
 .title{
     width: 16%;
-    max-width: 100px;      
+    min-width: 16%;      
 }

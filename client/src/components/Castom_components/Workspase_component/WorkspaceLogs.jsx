@@ -1,32 +1,27 @@
-import React, {useState, useMemo } from 'react';
+import React, {useState, useMemo,useEffect } from 'react';
 import LogsForm from '../LogsForm_component/LogsForm';
 import NavigationForm from '../NavigationForm_component/NavigationForm';
 /*import POAdderForm from '../POAdderForm_component/POAdderForm';*/
-
+import {useSoft} from '../../hook/useSoft'
+import {useLocation} from 'react-router-dom';
 import classes from './WorkspaseLogs.module.css';
 
 const WorkspaceLogs = ({posts, setPosts, usersData, saveUserData}) => {
-    var Dates = new Array(4);
-    var date = new Date(2018, 1, 15, 11, 33, 30, 0);
-    for(var p = 0; p < 4; p++) {
-        date.setDate(date.getDate() + 1);
-        Dates[p] = new Date(date);   
-        //document.write("<br>"+d);// тут работает
-    }
-
-/*Нужно создать функцию, которую передадим кнопке инфо, которая будет делать "запрос" и менять состояние некой переменной*/
-const [logs, setLogs] = useState([])
-const logOfPO = (PO) =>{
-    /*тут типа запрос */
-    const lg = [{id:Date.now()+1, errID:"55435fwd", errDIS:"sdvsdvdsv", date:Dates[0].toLocaleString(), dir:"/ets/bin"},
-                {id:Date.now()+4, errID:"ewfwef342", errDIS:"ewfwef", date:Dates[1].toLocaleString(), dir:"/c/farg/y"},
-                {id:Date.now()+3, errID:"fwefwef34", errDIS:"wefwef", date:Dates[2].toLocaleString(), dir:"/bon/tri/v"},
-                {id:Date.now()+2, errID:"wefwefwe3", errDIS:"wefwefewf", date:Dates[3].toLocaleString(), dir:"/ffew/fwe/wef"}];
-    for(var i=0;i<lg.length;i++){
-        setLogs(lg);
-    }
-    console.log(logs)
-}
+ 
+const {setSoftList} = useSoft();
+const {soft} = useSoft();
+const location = useLocation().pathname;
+useEffect(() => {
+        setSoftList();
+},[])
+    
+const [addedPOLog, setAddedPOLog]= useState(null)
+const [indexAddedPO, setIndexAddedPO] = useState(null)
+    
+const addedSoftLogs = useMemo(() => {
+        console.log("отработал хук useMemo для логов")
+        return addedPOLog;
+}, [addedPOLog])   
 
 /*const POinfo = (PO) =>{
     setAddedPOs({id:PO.id, title:PO.title, date:PO.date, status:PO.status, errorDIS:PO.errorDIS, errorID: PO.errorID});
@@ -48,30 +43,30 @@ const [filter, setFilter] = useState({sort:"", query:""})
 
 const sortedPOs = useMemo(() => {
     console.log("отработал хук useMemo")
-    if(filter.sort==="title"){
-        return [...posts].sort((a,b) => a[filter.sort].localeCompare(b[filter.sort]));
+    if(filter.sort==="soft_name"){
+        return [...soft].sort((a,b) => a[filter.sort].localeCompare(b[filter.sort]));
     }
-    else if(filter.sort==="date"){
-        return [...posts].sort((a,b) => {
+    else if(filter.sort==="last_upd"){
+        return [...soft].sort((a,b) => {
             if (a[filter.sort]>b[filter.sort]) return -1
             else if(a[filter.sort]===b[filter.sort]) return 0
             else return 1
         });
     }
-    else return posts;
-},[filter.sort, posts]) /*sortedPOs - переменная с отсортированным списком, при создании переменной будет с значениями из posts без сортировки*/
+    else return soft;
+},[filter.sort, soft]) /*sortedPOs - переменная с отсортированным списком, при создании переменной будет с значениями из posts без сортировки*/
 /*useMemo, чтобы  navigationform обновлялась только при изменении выбранной сортировки и добавлении значений в список*/
 
 const sortedAndSearchedPOs = useMemo(() => {
-    return sortedPOs.filter(PO => PO.title.toLowerCase().includes(filter.query.toLowerCase()))
+    return sortedPOs.filter(PO => PO.soft_name.toLowerCase().includes(filter.query.toLowerCase()))
 },[filter.query, sortedPOs]) /*sortedAndSearchedPOs - переменная составляется и кешируется из отсортированного списка с фильтром, чтобы элементы этого списка содержали в названии то, */
 /* что содерждит строка поиска из navigationform */
 
 
     return (
         <div className={classes.WorkspaceLogs}>
-            <NavigationForm setAddedPO={logOfPO} filter={filter} setFilter={setFilter} posts={sortedAndSearchedPOs} title="Cписок программного обеспечения" logsOfPO={logOfPO}/>
-            <LogsForm logs={logs}/>
+            <NavigationForm setAddedPO={setAddedPOLog} location={location} setIndex={setIndexAddedPO} filter={filter} setFilter={setFilter} posts={sortedAndSearchedPOs} title="Cписок программного обеспечения"/>
+            
         </div>
     );
 };

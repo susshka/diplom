@@ -24,7 +24,7 @@ const Layout = ({logging, userTitle}) => {
         <> 
             <Header>
                 <div className="title" style={{ marginLeft:"15px"}}>
-                    Сбор данных из различных сервисов АО "НПП "Звезда"
+                    Мониторинг состояния сервисов АО "НПП "Звезда"
                 </div>
                 <div className={classes.user}>
                     <p style={{margin:"10px"}}>{userTitle}</p>
