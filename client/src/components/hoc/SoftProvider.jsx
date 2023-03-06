@@ -71,6 +71,43 @@ export const SoftProvider = ({children}) => {
         )
     }
 
+    const addSoftError = (data, cb) =>{
+        var msg = ''
+        axios.get("/errors/check/"+data.sf_code+'/'+ data.err_code)
+        .then(
+            (result) => {
+                console.log(result)
+                if(result.data.message ==='Error with this soft-code or this error-code exist'){
+                    msg="Ошибка с таким кодом уже существует для данного ПО!"
+                    cb(msg, false)
+                }
+                else if(result.data.message ==='No errors for this soft and this error-code'){
+                    axios.post("/errors", data)
+                    .then(
+                        (result) => {
+                            console.log(result)
+                            cb("Ошибка добавлена в список ошибок", false)
+                        },
+                        (error) => {
+                            console.log(error)
+                            msg=error.response.data.message
+                            cb(msg, false)
+                        }
+                    )
+                }
+                else {
+                    msg = result.data
+                    cb(msg, false)
+                }
+            },
+            (error) => {
+                console.log(error)
+                msg=error.response.data.message
+                cb(msg, false)
+            }
+        )
+    }
+
     const setDefaultTime = (sf_code) => {
         axios.put("/general/"+sf_code)
         .then(
@@ -175,7 +212,7 @@ export const SoftProvider = ({children}) => {
     }
 
 
-    const value ={soft, error, msg, setSoftList, getSoftInfo, setDefaultTime, addNewSoft, getSoftErrorsInfo}
+    const value ={soft, error, msg, setSoftList, getSoftInfo, setDefaultTime, addNewSoft, getSoftErrorsInfo,addSoftError}
 
     return <SoftContext.Provider value={value}>
         {children}

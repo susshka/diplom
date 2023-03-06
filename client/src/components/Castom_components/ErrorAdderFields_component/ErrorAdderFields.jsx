@@ -14,6 +14,7 @@ const ErrorAdderFields = (props) => {
     
     const {soft} = useSoft();
     const {setSoftList} = useSoft();
+    const {addSoftError} = useSoft();
     useEffect(() => {
         setSoftList();  
         console.log('сработал useEffect')
@@ -22,9 +23,25 @@ const ErrorAdderFields = (props) => {
     const [message, setMessage] = useState("Введите данные");
     const [check, setCheck] = useState(true);
 
+    const checkErr = (msg, ch) => {
+        //проверка, какой коллбек дало добавление 
+        if(msg ==="Ошибка с таким кодом уже существует для данного ПО!" && ch===false){
+            setMessage(msg)
+            setCheck(ch)
+        }
+        else if(msg ==="Ошибка добавлена в список ошибок" && ch===false){
+            setMessage(msg)
+            setCheck(ch)
+        }
+        else{
+            setMessage(msg)
+            setCheck(ch)
+        }
+    }
+
     const hendlerSubmit = (event) =>{
         event.preventDefault();
-        /*addNewSoft(softData, checkAdd)*/
+        addSoftError(errorData, checkErr);
         setErrorData({err_code:"", err_descr:"", 
                     err_status:"", coef_status:"", 
                     sf_code:""})
@@ -69,8 +86,8 @@ const ErrorAdderFields = (props) => {
                         />
                     </div>
                     <div className={classes.field}>
-                        <strong className={classes.fieldTitle}>Введите код ПО: </strong>
-                        <Input type="number" min="0" disabled={false} required={true} placeholder="Введите код ПО (число)" value={errorData.err_code} onChange={e => setErrorData({...errorData, err_code: e.target.value})}/>
+                        <strong className={classes.fieldTitle}>Введите код ошибки: </strong>
+                        <Input type="number" min="0" disabled={false} required={true} placeholder="Введите код ошибки (число)" value={errorData.err_code} onChange={e => setErrorData({...errorData, err_code: e.target.value})}/>
                     </div>
                     <div className={classes.field}>
                         <strong className={classes.fieldTitle}>Введите описание ошибки(для регулярного выражения): </strong>
@@ -91,6 +108,22 @@ const ErrorAdderFields = (props) => {
                 </form>
             );
         }
+    }
+    else{
+        return (
+            <div>
+                <p style={{textAlign:'center'}}>{message}</p>
+                <div style={{display:"flex", justifyContent:"center"}}>
+                    <Button className={classes.send} onClick={() => {
+                            setCheck(true)
+                            setMessage("Введите данные")
+                            setErrorData({err_code:"", err_descr:"", 
+                            err_status:"", coef_status:"", 
+                            sf_code:""})            
+                        }}>Попробовать снова</Button>
+                </div>
+            </div>
+        );
     }
 };
 

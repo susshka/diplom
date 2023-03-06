@@ -12,6 +12,7 @@ from flask_apispec.extension import FlaskApiSpec
 from schemas import UserSchema, AuthSchema, GeneralSchema, ErrorSchema, ShowTableSchema
 from flask_apispec import use_kwargs, marshal_with
 import logging
+from sqlalchemy import and_, or_, not_
 
 app = Flask(__name__)
 app.config.from_object(Config)
@@ -112,6 +113,19 @@ def get_errors_soft(soft_code):
         logger.warning(f' (Soft code:{soft_code}) soft errors table action falled with errors: {e}')
         return {'message': str(e)}, 400
     return errors
+
+@app.route('/errors/check/<string:soft_code>/<int:err_code>', methods=['GET'])
+#@jwt_required()
+@marshal_with(ErrorSchema)
+def get_errors_check(soft_code, err_code):
+    try:
+        errors = Error.query.filter(and_(Error.sf_code==soft_code, Error.err_code==err_code)).first()
+        if not errors:
+            return {'message':'No errors for this soft and this error-code'}, 200
+    except Exception as e:
+        logger.warning(f' (Soft code:{soft_code}) soft check errors table action falled with errors: {e}')
+        return {'message': str(e)}, 400
+    return {'message': 'Error with this soft-code or this error-code exist'}, 200
 
 @app.route('/errors', methods=['POST'])
 #@jwt_required()
