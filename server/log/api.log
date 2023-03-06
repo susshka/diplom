@@ -265,3 +265,4 @@ FROM users
 WHERE users.login = ?]
 [parameters: ('Lola',)]
 (Background on this error at: https://sqlalche.me/e/20/e3q8)
+2023-03-06 14:00:01,437:__main__:WARNING: Login action falled with errors: No user with this password
