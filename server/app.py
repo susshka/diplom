@@ -29,6 +29,7 @@ engine_url = engine.URL.create(
                 "authentication": "ActiveDirectoryIntegrated",},
 )
 engine = create_engine(engine_url, echo=False, fast_executemany=True)
+insp = db.inspect(engine)
 
 session = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))
 
@@ -89,6 +90,18 @@ def get_user(user_login):
         logger.warning(f' User:{user_login} - read action falled with errors: {e}')
         return {'message': str(e)}, 400
     return {'message':'This user find on base'}, 200
+
+@app.route('/check_tables/<string:tablename>', methods=['GET'])
+#@jwt_required()
+def check_table(tablename):
+    try:
+        if not insp.has_table(tablename, schema="dbo"):
+            return {'message':'This table no exist'}, 200
+    except Exception as e:
+         logger.warning(f' Soft errors table read action falled with errors: {e}')
+         return {'message': str(e)}, 400
+    return {'message':'This table exist'}, 200
+        
 
 @app.route('/errors', methods=['GET'])
 #@jwt_required()

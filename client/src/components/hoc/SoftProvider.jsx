@@ -34,6 +34,18 @@ export const SoftProvider = ({children}) => {
             }
         )
     }
+ 
+    const checkTable = (tbl, cb) =>{
+        axios.get("/check_tables/"+tbl)
+        .then(
+            (result) => {
+                console.log(result)
+            },
+            (error) => {
+                console.log(error)
+            }
+        )
+    }
 
     const getSoftInfo = (sf_code, state) => {
         axios.get("/general/"+sf_code)
@@ -212,7 +224,10 @@ export const SoftProvider = ({children}) => {
     }
 
 
-    const value ={soft, error, msg, setSoftList, getSoftInfo, setDefaultTime, addNewSoft, getSoftErrorsInfo,addSoftError}
+    const value ={soft, error, msg, setSoftList, getSoftInfo, 
+                setDefaultTime, addNewSoft, 
+                getSoftErrorsInfo,addSoftError,
+                checkTable}
 
     return <SoftContext.Provider value={value}>
         {children}

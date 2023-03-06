@@ -3,14 +3,20 @@ import axios from 'axios';
 import classes from './HomePage.module.css'
 import {useAuth} from '../components/hook/useAuth'
 import {useSoft} from '../components/hook/useSoft'
+import Button from '../components/UI/button/Button';
+import Input from '../components/UI/input/Input';
 
 const HomePage = (props) => {
 
     const [testUsers, setTestUsers] = useState([]);
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
+    const [message, setMessage] = useState('Введите данные')
+    const [table, setTable] = useState({tbl: ''})
+
     const {user} = useAuth();
     const {setSoftList} = useSoft();
+    const {checkTable} = useSoft();
 
     var header ={}
 
@@ -38,6 +44,11 @@ const HomePage = (props) => {
         )
      },[])
     
+    const hendlerSubmit = (event) =>{
+        event.preventDefault();
+        checkTable(table.tbl)
+        setTable({tbl: ''})
+    }
 
     if(error){
         return (<div className={classes.HomePage}>Ошибка: {error.message}</div>);
@@ -57,6 +68,12 @@ const HomePage = (props) => {
                             </li>
                         ))}
                     </ul>
+                    <hr style={{margin:'15px 0'}}/>
+                    <form onSubmit={hendlerSubmit}>
+                        <p>{message}</p>
+                        <Input type="text" disabled={false} required={true} placeholder="Введите название таблицы" value={table.tbl} onChange={e => setTable({...table, tbl:e.target.value})}/>
+                        <Button type="submit" className={classes.send}>Проверить таблицу</Button>
+                    </form>
                 </div>
             </div>
         );
