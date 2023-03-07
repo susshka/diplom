@@ -9,6 +9,7 @@ const ErrorsList = ({addedPO, indPO, setAddedPO}) => {
                          {id: "id", title:"Код ошибки"},
                          {title:"Код ПО"},
                          {title:"Описание"},
+                         {title:"Поле поиска"},
                          {title:"Статус"},
                          {title:"Коэффициэнт"},
                         ];

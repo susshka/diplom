@@ -47,16 +47,43 @@ export const SoftProvider = ({children}) => {
         )
     }
 
-    const getTable = (tbl, cb) =>{
-        axios.get("/table_log/"+tbl)
+    const getTable = (tbl, state) =>{
+       axios.get("/check_tables/"+tbl+'_2')
         .then(
             (result) => {
                 console.log(result)
+                if(result.data.message === 'This table no exist'){
+                    state({message:'Таблицы с логами для этой таблицы пока нет в БД', res:''})
+                }
+                else if(result.data.message === 'This table exist'){
+                    axios.get("/table_log/"+tbl+'_2')
+                    .then(
+                        (result) => {
+                            if(result.data.message === 'No logs for this soft!'){
+                                state({message:'В таблице с логами нет записей!', res:''})
+                            }
+                            else if(result.data.message === 'Logs form this soft serched!'){
+                                state({message:'Логи найдены', res:result.data.res})
+                            }
+                            else{
+                                state({message:result.data.message, res:''})
+                            }
+                        },
+                        (error) => {
+                            state({message:error.response.data.message, res:''})
+                        }
+                    )
+                }
+                else {
+                    state({message:result.data.message, res:''}) 
+                }
             },
             (error) => {
                 console.log(error)
+                state({message:error.response.data.message, res:''})
             }
         )
+        
     }
 
     const getSoftInfo = (sf_code, state) => {

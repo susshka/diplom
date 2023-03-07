@@ -66,7 +66,7 @@ const sortedAndSearchedPOs = useMemo(() => {
     return (
         <div className={classes.WorkspaceLogs}>
             <NavigationForm setAddedPO={setAddedPOLog} location={location} setIndex={setIndexAddedPO} filter={filter} setFilter={setFilter} posts={sortedAndSearchedPOs} title="Cписок программного обеспечения"/>
-            
+            <LogsForm addedPO={addedSoftLogs} indPO={indexAddedPO} setAddedPO={setAddedPOLog}/>
         </div>
     );
 };

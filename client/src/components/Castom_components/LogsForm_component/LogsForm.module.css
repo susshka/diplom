@@ -12,3 +12,8 @@
     border-radius: 5px;
     background:#e5e5e5;
 }
+.title{
+    display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
+   }

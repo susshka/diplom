@@ -1,10 +1,9 @@
-.LogsItem{
-    justify-content: space-around;
-    align-items: center;
+.LogsHeader{
     display: flex;
-    padding: 15px;
-    border: 2px solid rgb(65,88,208);
-    margin-top: 15px;   
+    justify-content:space-around;
+    width: 100%;
+    padding: 17px;
+    /*margin-left: 15px;*/
 }
 .title{
     width: 24%;        

@@ -12,6 +12,12 @@
 .title_code{
     width: 8%
 }
+.title_code_err{
+    width: 12%
+}
 .title_coef{
     width: 8%
+}
+.title_field{
+    width: 16%
 }

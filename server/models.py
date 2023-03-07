@@ -59,6 +59,7 @@ class Error(Base):
     id_er = db.Column(db.Integer, primary_key=True, autoincrement=True)
     err_code = db.Column(db.Integer)
     err_descr = db.Column(db.String(200))
+    err_date_qry = db.Column(db.String(200))
     err_status = db.Column(db.String(100))
     coef_status = db.Column(db.Float, nullable=False)
     sf_code = db.Column(db.String(100), db.ForeignKey('generals.soft_code'))

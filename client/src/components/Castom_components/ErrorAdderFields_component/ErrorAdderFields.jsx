@@ -7,7 +7,7 @@ import Button from '../../UI/button/Button';
 
 const ErrorAdderFields = (props) => {
     const [errorData, setErrorData] = useState({ 
-                                            err_code:"", err_descr:"", 
+                                            err_code:"", err_descr:"", err_date_qry:"",
                                             err_status:"", coef_status:"", 
                                             sf_code:""});
     
@@ -42,7 +42,7 @@ const ErrorAdderFields = (props) => {
     const hendlerSubmit = (event) =>{
         event.preventDefault();
         addSoftError(errorData, checkErr);
-        setErrorData({err_code:"", err_descr:"", 
+        setErrorData({err_code:"", err_descr:"",err_date_qry:"", 
                     err_status:"", coef_status:"", 
                     sf_code:""})
     }
@@ -98,6 +98,10 @@ const ErrorAdderFields = (props) => {
                         <Input type="text" disabled={false} required={true} placeholder="Введите статус ПО" value={errorData.err_status} onChange={e => setErrorData({...errorData, err_status: e.target.value})}/>
                     </div>
                     <div className={classes.field}>
+                        <strong className={classes.fieldTitle}>Введите название поля поиска ошибки: </strong>
+                        <Input type="text" disabled={false} required={true} placeholder="Введите название поля поиска ошибки" value={errorData.err_date_qry} onChange={e => setErrorData({...errorData, err_date_qry: e.target.value})}/>
+                    </div>
+                    <div className={classes.field}>
                         <strong className={classes.fieldTitle}>Введите коэффициент ошибки: </strong>
                         <Input type="number" step="0.1" min="0" max="1" disabled={false} required={true} placeholder="Введите коэффициент ошибки (число)" value={errorData.coef_status} onChange={e => setErrorData({...errorData, coef_status: e.target.value})}/>
                     </div>
@@ -118,7 +122,7 @@ const ErrorAdderFields = (props) => {
                             setCheck(true)
                             setMessage("Введите данные")
                             setErrorData({err_code:"", err_descr:"", 
-                            err_status:"", coef_status:"", 
+                            err_date_qry:"", err_status:"", coef_status:"", 
                             sf_code:""})            
                         }}>Попробовать снова</Button>
                 </div>

@@ -30,6 +30,7 @@ class ErrorSchema(Schema):
     id_er = fields.Integer(dump_only=True)
     err_code = fields.Integer(required=True)
     err_descr = fields.String(required=True, validate=[validate.Length(max=200)])
+    err_date_qry = fields.String(validate=[validate.Length(max=200)])
     err_status = fields.String(required=True, validate=[validate.Length(max=100)])
     coef_status = fields.Float(required=True)
     sf_code = fields.String(required=True, validate=[validate.Length(max=100)])

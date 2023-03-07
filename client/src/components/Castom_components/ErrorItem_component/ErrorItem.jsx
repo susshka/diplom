@@ -5,10 +5,13 @@ const ErrorItem = (props) => {
     return (
         <div className={classes.ErrorItem}>
             <strong className={classes.title_code}>{props.err.id_er}</strong>
-            <strong className={classes.title_code}>{props.err.err_code}</strong>
+            <strong className={classes.title_code_err}>{props.err.err_code}</strong>
             <strong className={classes.title_code}>{props.err.sf_code}</strong>
             <div className={classes.title}>
               <p>{props.err.err_descr}</p>
+            </div>
+            <div className={classes.title_field}>
+              <p>{props.err.err_date_qry}</p>
             </div>
             <strong className={classes.title}>{props.err.err_status}</strong>
             <div className={classes.title_coef}>

@@ -6,7 +6,8 @@ import {useSoft} from '../../../hook/useSoft'
 полученную инфу в некий jsx отвечающий за отображение подробной инфы об ПО */
 const POItem = (props) => {
   const {getSoftInfo} = useSoft(); 
-  const {getSoftErrorsInfo} = useSoft(); 
+  const {getSoftErrorsInfo} = useSoft();
+  const {getTable} = useSoft();  
   var date = '-----';
   var ec = '-----';
   if(props.post.last_upd) date = new Date(props.post.last_upd).toLocaleString();
@@ -31,6 +32,10 @@ const POItem = (props) => {
               else if(props.location ==="/errors"){
                 props.setIndex(props.number)
                 getSoftErrorsInfo(props.post.soft_code, props.setAddedPO)
+              }
+              else if(props.location ==="/logs_list"){
+                props.setIndex(props.number)
+                getTable(props.post.soft_code, props.setAddedPO)
               }
             }
             }>Инфо</Button>
