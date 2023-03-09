@@ -1,4 +1,5 @@
 .ErrorItem{
+    min-height: 120px;
     justify-content: space-around;
     align-items: center;
     display: flex;
@@ -9,6 +10,16 @@
 .title{
     width: 22%;  
     word-wrap: break-word;      
+}
+.title_error_d{
+    min-height: fit-content;
+    width: 22%;  
+    word-wrap: break-word;      
+}
+.title_error_dscr{
+    font-size: small;
+    word-wrap: break-word;
+    height: 100%;        
 }
 .title_code{
     width: 6%;

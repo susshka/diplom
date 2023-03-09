@@ -122,7 +122,7 @@ def get_logs(tablename):
             table.c.create_date,
             table.c.create_time,
             table.c.path_log,
-        ).limit(10)
+        ).order_by(table.c.id_log.desc()).limit(10)
         connection = engine.connect()
         results = connection.execute(stmt).fetchall()
         serialaser = []

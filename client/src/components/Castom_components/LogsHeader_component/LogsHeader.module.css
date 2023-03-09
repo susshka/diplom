@@ -1,6 +1,6 @@
 .LogsHeader{
     display: flex;
-    justify-content:flex-start;
+    justify-content:space-around;
     width: 100%;
     padding: 17px;
     /*margin-left: 15px;*/
@@ -9,8 +9,12 @@
     width: 24%;  
     word-wrap: break-word;      
 }
+.title_date{
+    width: 16%;  
+    word-wrap: break-word;      
+}
 .title_path{
-    width: 40%; 
+    width: 24%; 
     word-wrap: break-word;       
 }
 .title_code{
@@ -26,6 +30,10 @@
     word-wrap: break-word;
 }
 .title_field{
-    width: 16%;
+    width: 24%;
+    word-wrap: break-word;
+}
+.title_status{
+    width: 8%;
     word-wrap: break-word;
 }

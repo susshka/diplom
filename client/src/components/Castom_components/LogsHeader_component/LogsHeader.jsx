@@ -6,8 +6,9 @@ const LogsHeader = (props) => {
         <div className={classes.LogsHeader}>
             <strong className={classes.title_code}>ID</strong>
             <strong className={classes.title_code_err}>Код ошибки</strong>
-            <strong className={classes.title_field}>Статус</strong>
-            <strong className={classes.title}>Время создания</strong>
+            <strong className={classes.title_status}>Статус</strong>
+            <strong className={classes.title_field}>Описание</strong>
+            <strong className={classes.title_date}>Время создания</strong>
             <strong className={classes.title_path}>Путь</strong>
         </div>
     );
