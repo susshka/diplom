@@ -33,7 +33,7 @@ const Layout = ({logging, userTitle, setLogging, setUserTitle}) => {
         <> 
             <Header>
                 <div className="title" style={{ marginLeft:"15px"}}>
-                    Мониторинг состояния сервисов АО "НПП "Звезда"
+                    Сервис мониторинга состояния компонентов ИС АО "НПП "Звезда"
                 </div>
                 <div className={classes.user}>
                     <p style={{margin:"10px"}}>{userTitle}</p>

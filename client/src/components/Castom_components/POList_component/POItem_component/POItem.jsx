@@ -12,7 +12,23 @@ const POItem = (props) => {
   var ec = '-----';
   if(props.post.last_upd) date = new Date(props.post.last_upd).toLocaleString();
   if(props.post.err_code) ec = props.post.err_code
+  if(props.post.soft_code==='sys_serv'&&props.location ==="/logs_list"){
+    return(
+      <div className={classes.POItem}>
+        <div className={classes.po_content}>
 
+            <strong className={classes.title_code}>{props.post.id}</strong>
+            <strong className={classes.title}>{props.post.soft_name}</strong>
+            <strong className={classes.title}>{props.post.soft_code}</strong>
+            <p className={classes.title}>{date}</p>
+            <strong className={classes.title_code_err}>{ec}</strong>
+            <div className={classes.title}>
+            </div>
+        </div>
+    </div>
+    );
+  }
+  else{
     return (
     <div className={classes.POItem}>
         <div className={classes.po_content}>
@@ -43,6 +59,7 @@ const POItem = (props) => {
         </div>
     </div>
     );
+  }
 };
 
 export default POItem;

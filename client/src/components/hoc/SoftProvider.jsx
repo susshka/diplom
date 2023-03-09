@@ -47,6 +47,26 @@ export const SoftProvider = ({children}) => {
         )
     }
 
+   /* const getLogTableNext = (tbl, id_last, stateLogs, statePage) =>{
+        axios.get("/table_log/next/"+tbl+'/'+id_last)
+        .then(
+            (result) => {
+                if(result.data.message === 'No logs for this soft!'){
+                    stateLogs({message:'В таблице с логами нет записей!', res:''})
+                }
+                else if(result.data.message === 'Logs form this soft serched!'){
+                    stateLogs({message:'Логи найдены', res:result.data.res})
+                }
+                else{
+                    stateLogs({message:result.data.message, res:''})
+                }
+            },
+            (error) => {
+                stateLogs({message:error.response.data.message, res:''})
+            }
+        )
+    }*/
+
     const getTable = (tbl, state) =>{
        axios.get("/check_tables/"+tbl+'_2')
         .then(

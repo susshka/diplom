@@ -10,11 +10,13 @@ const POList = ({posts,setAddedPO, setIndex, location}) => {
                          {title:"Последнее обновление"},
                          {title:"Статус"},
                         ];
+
     if(!posts.length){
         return(
         <h1 style={{textAlign:'center', fontSize:25}}>Программное обеспечение не найдено!</h1>
         )
     }
+    console.log(posts)
     return (
         <div className={classes.POList}>
             <POHeader titles={titlesHeader}/>

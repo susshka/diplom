@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import LogsHeader from '../LogsHeader_component/LogsHeader';
 import LogsItem from '../LogsItem_component/LogsItem';
 import POHeader from '../POList_component/POHeader_component/POHeader';
@@ -10,14 +11,15 @@ const LogsList = ({addedPO, indPO, setAddedPO}) => {
                           {title:"Время создания"},
                           {title:"Путь"}];
 
+    const [page_logs, setPageLogs] = useState(0);
+
     if(addedPO===null){
         return(
         <h1 style={{textAlign:'center', fontSize:15}}>Выберете ПО для просмотра списка log-файлов</h1>
         );
     }
     else if(addedPO.message==='Логи найдены'){
-        console.log(addedPO)
-       
+        console.log(addedPO) 
         return (
             <div className={classes.LogsList}>
                 <LogsHeader/>

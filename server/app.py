@@ -145,7 +145,51 @@ def get_logs(tablename):
     except Exception as e:
          logger.warning(f' Table read action falled with errors: {e}')
          return {'message': str(e)}, 400
-    return {'message':'Logs form this soft serched!', 'res': serialaser}, 200          
+    return {'message':'Logs form this soft serched!', 'res': serialaser}, 200  
+
+@app.route('/table_log/next/<string:tablename>/<string:id_log_last>', methods=['GET'])
+def get_logs_next(tablename, id_log_last):
+    try:
+        meta = MetaData()
+        table = Table(
+           tablename,
+           meta, 
+           autoload_with=engine
+        )   
+        stmt = select(
+            table.c.id_log,
+            table.c.err_code,
+            table.c.err_desc,
+            table.c.err_status,
+            table.c.add_date,
+            table.c.add_time,
+            table.c.create_date,
+            table.c.create_time,
+            table.c.path_log,
+        ).where(table.c.id_log<id_log_last).order_by(table.c.id_log.desc()).limit(10)
+        connection = engine.connect()
+        results = connection.execute(stmt).fetchall()
+        serialaser = []
+        if not results:
+            return {'message':'No logs for this soft!'}, 200  
+        for result in results:
+            serialaser.append({
+                'id_log': int(result[0]),
+                'err_code': int(result[1]),
+                'err_desc': str(result[2]),
+                'err_status': str(result[3]),
+                'add_date': result[4].strftime("%Y/%m/%d"),
+                'add_time': result[5].strftime("%H:%M:%S"),
+                'create_date': result[6].strftime("%Y/%m/%d"),
+                'create_time': result[7].strftime("%H:%M:%S"),
+                'path_log': str(result[8]),
+            })
+        #res = jsonify(results)
+        #logger.warning(f'{res}')       
+    except Exception as e:
+         logger.warning(f' Table read action falled with errors: {e}')
+         return {'message': str(e)}, 400
+    return {'message':'Logs form this soft serched!', 'res': serialaser}, 200             
   
 @app.route('/errors', methods=['GET'])
 #@jwt_required()
