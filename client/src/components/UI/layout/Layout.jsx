@@ -6,11 +6,16 @@ import Button from '../button/Button';
 import Navbar from '../navbar/Navbar';
 import classes from './Layout.module.css'
 
-const Layout = ({logging, userTitle}) => {
+const Layout = ({logging, userTitle, setLogging, setUserTitle}) => {
     
     const navigate = useNavigate();
     const {signout, user} = useAuth();
     
+    if(user){
+        setLogging('Выйти')
+        setUserTitle(user.user)
+    }
+
     const hendlerOnclick = (event) =>{
         event.preventDefault();
         if(user){

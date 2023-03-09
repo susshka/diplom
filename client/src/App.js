@@ -72,7 +72,7 @@ const [userTitle, setUserTitle]=useState("Авторизуйтесь")
     <AuthProvider users={usersData} setLogging={setLogging} setUserTitle={setUserTitle}>
       <SoftProvider>
         <Routes>
-          <Route path="/" element={<Layout userTitle={userTitle} logging={logging}/>}>
+          <Route path="/" element={<Layout userTitle={userTitle} logging={logging} setLogging={setLogging} setUserTitle={setUserTitle}/>}>
             <Route index element={
               <RequireAuth>
                 <HomePage/>

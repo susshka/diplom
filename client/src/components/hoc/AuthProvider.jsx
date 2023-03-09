@@ -4,7 +4,7 @@ import axios from 'axios';
 export const AuthContext = createContext(null);
 
 export const AuthProvider = ({children, users, setUserTitle, setLogging}) => {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState( JSON.parse(localStorage.getItem('ActiveUser')) || null);
 
     const signin = (usr, pw, cb) => {
         var msg =''
@@ -22,6 +22,7 @@ export const AuthProvider = ({children, users, setUserTitle, setLogging}) => {
                             msg = result.statusText
                             console.log("Успех получения токена!"+msg)
                             setUser({'user':usr, 'password':pw, 'access_token': result.data.access_token});
+                            localStorage.setItem('ActiveUser', JSON.stringify({'user':usr, 'password':pw, 'access_token': result.data.access_token}))
                             setLogging("Выйти")
                             setUserTitle(usr)
                             cb();
