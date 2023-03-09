@@ -1,22 +1,31 @@
 .LogsHeader{
     display: flex;
-    justify-content:space-around;
+    justify-content:flex-start;
     width: 100%;
     padding: 17px;
     /*margin-left: 15px;*/
 }
 .title{
-    width: 24%;        
+    width: 24%;  
+    word-wrap: break-word;      
+}
+.title_path{
+    width: 40%; 
+    word-wrap: break-word;       
 }
 .title_code{
-    width: 8%
+    width: 8%;
+    word-wrap: break-word;
 }
 .title_code_err{
-    width: 12%
+    width: 12%;
+    word-wrap: break-word;
 }
 .title_coef{
-    width: 8%
+    width: 8%;
+    word-wrap: break-word;
 }
 .title_field{
-    width: 16%
+    width: 16%;
+    word-wrap: break-word;
 }

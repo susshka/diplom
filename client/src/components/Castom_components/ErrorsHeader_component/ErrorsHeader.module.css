@@ -6,17 +6,22 @@
     /*margin-left: 15px;*/
 }
 .title{
-    width: 24%;        
+    width: 22%;  
+    word-wrap: break-word;      
 }
 .title_code{
-    width: 8%
+    width: 6%;
+    word-wrap: break-word;
 }
 .title_code_err{
-    width: 12%
+    width: 10%;
+    word-wrap: break-word;
 }
 .title_coef{
-    width: 8%
+    width: 6%;
+    word-wrap: break-word;
 }
 .title_field{
-    width: 16%
+    width: 14%;
+    word-wrap: break-word;
 }

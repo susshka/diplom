@@ -1,5 +1,7 @@
 .LogsItem{
-    justify-content: space-around;
+    height: 120px;
+    width: 100%;
+    justify-content: flex-start;
     align-items: center;
     display: flex;
     padding: 15px;
@@ -7,16 +9,33 @@
     margin-top: 15px;   
 }
 .title{
-    width: 24%;        
+    width: 24%;  
+    word-wrap: break-word;      
+}
+.title_path{
+    min-height: fit-content;
+    word-wrap: break-word;
+    width: 40%;        
+}
+
+.title_path_log{
+    word-wrap: break-word;
+    height: 100%;        
 }
 .title_code{
     width: 8%
+   
+}
+.title_code_sf{
+    min-height: fit-content;
+    word-wrap: break-word;        
 }
 .title_code_err{
     width: 12%
 }
 .title_coef{
     width: 8%
+    
 }
 .title_field{
     width: 16%
