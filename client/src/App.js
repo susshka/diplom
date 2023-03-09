@@ -4,7 +4,7 @@ import WorkspaceInfo from "./components/Castom_components/Workspase_component/Wo
 import "./styles/App.css";
 import Layout from "./components/UI/layout/Layout";
 import WorkspaceLogs from "./components/Castom_components/Workspase_component/WorkspaceLogs";
-import RequireAuth from './components/hoc/RequireAuth'
+import {RequireAuth} from './components/hoc/RequireAuth'
 import { AuthProvider } from "./components/hoc/AuthProvider";
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";

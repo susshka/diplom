@@ -21,8 +21,8 @@ export const AuthProvider = ({children, users, setUserTitle, setLogging}) => {
                             console.log(result)
                             msg = result.statusText
                             console.log("Успех получения токена!"+msg)
-                            setUser({'user':usr, 'password':pw, 'access_token': result.data.access_token});
-                            localStorage.setItem('ActiveUser', JSON.stringify({'user':usr, 'password':pw, 'access_token': result.data.access_token}))
+                            setUser({'user':usr, 'access_token': result.data.access_token});
+                            localStorage.setItem('ActiveUser', JSON.stringify({'user':usr,'access_token': result.data.access_token}))
                             setLogging("Выйти")
                             setUserTitle(usr)
                             cb();
@@ -64,6 +64,7 @@ export const AuthProvider = ({children, users, setUserTitle, setLogging}) => {
         setLogging("Войти")
         setUserTitle("Авторизуйтесь")
         setUser(null);
+        localStorage.removeItem('ActiveUser')
         cb();
     }
     const register = (log, pwd, checkpwd, cb) => {

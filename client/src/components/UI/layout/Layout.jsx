@@ -5,16 +5,20 @@ import Header from '../header/Header';
 import Button from '../button/Button';
 import Navbar from '../navbar/Navbar';
 import classes from './Layout.module.css'
+import { useEffect } from 'react';
 
 const Layout = ({logging, userTitle, setLogging, setUserTitle}) => {
     
     const navigate = useNavigate();
     const {signout, user} = useAuth();
     
-    if(user){
-        setLogging('Выйти')
-        setUserTitle(user.user)
-    }
+    useEffect(() => {
+        if(user){
+            setLogging('Выйти')
+            setUserTitle(user.user)
+        }
+    },[user]);
+    
 
     const hendlerOnclick = (event) =>{
         event.preventDefault();
