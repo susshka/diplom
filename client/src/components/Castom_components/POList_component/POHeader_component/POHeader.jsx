@@ -11,7 +11,7 @@ const POHeader = ({titles, ...props}) => {
             <strong className={classes.title}>Название ПО</strong>
             <strong className={classes.title}>Код ПО</strong>
             <strong className={classes.title}>Последнее обновление</strong>
-            <strong className={classes.title_code}>Статус</strong>
+            <strong className={classes.title_code_err}>Код ошибки</strong>
             <div className={classes.title_btn}>
                 <Button onClick={() => {
                   setSoftList()

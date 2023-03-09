@@ -9,6 +9,10 @@
     width: 8%;
     word-wrap: break-word;
 }
+.title_code_err{
+    width: 12%;
+    word-wrap: break-word;
+}
 .title{
     width: 16%;   
     word-wrap: break-word;

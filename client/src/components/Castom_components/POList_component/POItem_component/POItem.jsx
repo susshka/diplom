@@ -21,7 +21,7 @@ const POItem = (props) => {
             <strong className={classes.title}>{props.post.soft_name}</strong>
             <strong className={classes.title}>{props.post.soft_code}</strong>
             <p className={classes.title}>{date}</p>
-            <strong className={classes.title_code}>{ec}</strong>
+            <strong className={classes.title_code_err}>{ec}</strong>
           <div className={classes.title}>
             <Button onClick={() => {
               /*props.setAddedPO(props.post)*/

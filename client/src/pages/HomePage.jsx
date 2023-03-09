@@ -24,8 +24,7 @@ const HomePage = (props) => {
         header = {"Authorization" :"Bearer "+user.access_token}     
     }
     else{
-        header ={}
-        
+        header ={}  
     }
 
     useEffect(() => {
