@@ -7,6 +7,10 @@ const POInfoFields = ({addedPO, indPO, setAddedPO}) => {
     const {soft} = useSoft();
     const {setDefaultTime} = useSoft();
     const {getSoftInfo} = useSoft();
+
+    var last_upd='-----';
+    var last_log_id ='-----';
+    var err_code ='-----';
     if(addedPO===null || indPO===null){
         return (
             <div className={classes.POInfoFields}>
@@ -16,7 +20,9 @@ const POInfoFields = ({addedPO, indPO, setAddedPO}) => {
     } 
     else{
        /* console.log(addedPO)*/
-        
+        if(soft[indPO].last_upd) last_upd=soft[indPO].last_upd;
+        if(soft[indPO].last_log_id) last_log_id =soft[indPO].last_log_id;
+        if(soft[indPO].err_code) err_code =soft[indPO].err_code;
 
         return (
             <div className={classes.POInfoFields}>
@@ -30,15 +36,15 @@ const POInfoFields = ({addedPO, indPO, setAddedPO}) => {
                 </div>
                 <div className='fields'>
                     <strong className='infoTitle'>Дата последнего обновления:</strong>
-                    <p className='infoDiscr'>{soft[indPO].last_upd}</p>
+                    <p className='infoDiscr'>{last_upd}</p>
                 </div>
                 <div className='fields'>
                     <strong className='infoTitle'>ID последнего лога:</strong>
-                    <p className='infoDiscr'>{soft[indPO].last_log_id}</p>
+                    <p className='infoDiscr'>{last_log_id}</p>
                 </div>
                 <div className='fields'>
                     <strong className='infoTitle'>Код ошибки: </strong>
-                    <p className='infoDiscr'>{soft[indPO].err_code}</p>
+                    <p className='infoDiscr'>{err_code}</p>
                 </div>
                 <div className='fields'>
                     <strong className='infoTitle'>Тип хранения логов: </strong>
