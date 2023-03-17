@@ -1,64 +1,75 @@
 import {createContext, useState, useEffect} from 'react';
 import axios from 'axios';
+import {useNavigate} from 'react-router-dom'
 
 export const AuthContext = createContext(null);
 
 export const AuthProvider = ({children, users, setUserTitle, setLogging}) => {
     const [user, setUser] = useState( JSON.parse(localStorage.getItem('ActiveUser')) || null);
+    const navigate = useNavigate();
 
     const signin = (usr, pw, cb) => {
-        var msg =''
-        axios.get("/users/"+usr)
-        .then(
-            (result) => {
-                msg = result.data.message
-                console.log("Успех поиска пользователя в бд! "+ msg)
-                /*cb("Такой пользователь существует", false)*/
-                 if(msg==="This user find on base"){
-                     axios.post("/login", {'login':usr, 'password':pw})
-                     .then(
-                         (result) => {
-                            console.log(result)
-                            msg = result.statusText
-                            console.log("Успех получения токена!"+msg)
-                            setUser({'user':usr, 'access_token': result.data.access_token});
-                            localStorage.setItem('ActiveUser', JSON.stringify({'user':usr,'access_token': result.data.access_token}))
-                            setLogging("Выйти")
-                            setUserTitle(usr)
-                            cb();
-                         },
-                         (error) => {
-                             msg=error.message
-                             console.log("Ошибка получения токена: "+msg)
-                             setUser(null);
-                             cb();
-                         }
-                     ) 
-                 }
-                 else if(msg === "No users with this login"){
-                    console.log("Такого поользователя нет"+ msg)
+        var msg = '';
+        axios.get("/users/" + usr)
+            .then(
+                (result) => {
+                    msg = result.data.message;
+                    console.log("Успех поиска пользователя в бд! " + msg);
+                    /*cb("Такой пользователь существует", false)*/
+                    if (msg === "This user find on base") {
+                        axios.post("/login", { 'login': usr, 'password': pw })
+                            .then(
+                                (result) => {
+                                    console.log(result);
+                                    msg = result.statusText;
+                                    console.log("Успех получения токена!" + msg);
+                                    setUser({ 'user': usr, 'access_token': result.data.access_token });
+                                    localStorage.setItem('ActiveUser', JSON.stringify({ 'user': usr, 'access_token': result.data.access_token }));
+                                    setLogging("Выйти");
+                                    setUserTitle(usr);
+                                    cb("Вход выполнен");
+                                    navigate('/', { replace: true });
+                                },
+                                (error) => {
+                                    console.log(error);
+                                    msg = error.response.data.message;
+                                    console.log("Ошибка получения токена: " + msg);
+                                    setUser(null);
+                                    if (msg === "No user with this password"){
+                                        cb("Ошибка ввода пароля");
+                                    }
+                                    else
+                                        cb("Ошибка поучения токена");
+                                    /*navigate('/', { replace: true });*/
+                                }
+                            );
+                    }
+                    else if (msg === "No users with this login") {
+                        console.log("Такого пользователя нет" + msg);
+                        setUser(null);
+                        cb("Такого пользователя нет в бд");
+                        /*navigate('/', { replace: true });*/
+                    }
+                },
+                (error) => {
+                    msg = error.message;
+                    console.log("Ошибка поиска пользователя в бд: " + msg);
                     setUser(null);
-                    cb();
-                 }
-            },
-            (error) => {
-                msg=error.message
-                console.log("Ошибка поиска пользователя в бд: "+msg)
-                setUser(null);
-                cb();
-            }
-        )
+                    cb("Ошибка поиска пользователя в бд");
+                    /*navigate('/', { replace: true });*/
+                }
+            );
 
-       /* if (users.find(ud => ud.login===usr && ud.password===pw)){  
-            setUser({user:usr, password:pw});
-            setLogging("Выйти")
-            setUserTitle(usr)
-            cb();
-        }
-        else {
-            setUser(null);
-            cb();
-        }*/
+        /* if (users.find(ud => ud.login===usr && ud.password===pw)){
+             setUser({user:usr, password:pw});
+             setLogging("Выйти")
+             setUserTitle(usr)
+             cb();
+         }
+         else {
+             setUser(null);
+             cb();
+         }*/
     }
     const signout = (cb) =>{
         setLogging("Войти")

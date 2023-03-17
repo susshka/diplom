@@ -49,3 +49,7 @@ Traceback (most recent call last):
     raise TypeError(f"Object of type {type(o).__name__} is not JSON serializable")
 TypeError: Object of type Response is not JSON serializable
 2023-03-07 13:17:21,328:__main__:WARNING: Table read action falled with errors: Object of type Row is not JSON serializable
+2023-03-17 08:28:06,527:__main__:WARNING: Login action falled with errors: No user with this password
+2023-03-17 08:33:24,935:__main__:WARNING: Login action falled with errors: No user with this password
+2023-03-17 08:34:00,002:__main__:WARNING: Login action falled with errors: No user with this password
+2023-03-17 08:41:45,934:__main__:WARNING: Login action falled with errors: No user with this password
